@@ -30,7 +30,7 @@ class NicknameViewModel: CommonViewModel {
     func transform(input: Input) -> Output {
         let result = input.nickname
             .orEmpty
-            .map { $0.count <= 10 }
+            .map { $0.count >= 1 }
             .share(replay: 1, scope: .whileConnected)
         
         return Output(validStatus: result, validText: validText, sceneTransition: input.tap)

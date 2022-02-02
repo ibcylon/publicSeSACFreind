@@ -8,27 +8,38 @@
 import UIKit
 import SnapKit
 
+ enum ButtonStatus {
+    case inactive, fill, outline, cancel, disable
+}
+
 class GreenButton: UIButton {
     
-    enum buttonStatus {
-        case inactive, fill, outline, cancel, disable
+    var status: ButtonStatus = .fill  {
+        didSet {
+            switch status {
+            case .inactive:
+                self.configuration = .fillStyle()
+            case .fill:
+                self.configuration = .fillStyle()
+            case .outline:
+                self.configuration = .disableStyle()
+            case .cancel:
+                self.configuration = .disableStyle()
+            case .disable:
+                self.configuration = .disableStyle()
+            }
+        }
     }
-    
-    var status: buttonStatus = .disable
     var validStatus:Bool = false
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
-        
+        self.status = .fill
         backgroundColor = .brandGreen
         self.layer.cornerRadius = 10
+        
+        self.configuration = .disableStyle()
         setTitleColor(.white, for: .normal)
-        
-        
-        
-        
     }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

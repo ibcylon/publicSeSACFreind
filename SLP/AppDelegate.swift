@@ -57,6 +57,8 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         Messaging.messaging().apnsToken = deviceToken
+        
+        
     }
 }
 
@@ -64,7 +66,7 @@ extension AppDelegate: MessagingDelegate {
     
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
-        print("FCMToken:  \(fcmToken!)")
+        UserDefaults.standard.set(fcmToken, forKey: "fcmToken")
     }
 //    func messaging(_ messaging: Messaging, didReceive remoteMessage: MessagingRemoteMessage) {
 //            print("Received data message: \(remoteMessage.appData)")

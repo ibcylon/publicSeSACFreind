@@ -7,12 +7,32 @@
 
 import Foundation
 
+
+enum Token {
+    case idToken
+    case fcmToken
+}
+
+extension Token {
+    var token: String {
+        switch self {
+        case .idToken:
+            return UserDefaults.standard.string(forKey: "idToken")!
+        case .fcmToken:
+            return UserDefaults.standard.string(forKey: "fcmToken")!
+        }
+    }
+}
+
+
 enum Method: String {
     case GET, POST, PUT, DELETE
 }
 
+
+
 enum EndPoint {
-    case register
+    case user
     case update_fcm_token
     case update_mypage
     case withdraw
@@ -21,7 +41,7 @@ enum EndPoint {
 extension EndPoint {
     var url: URL {
         switch self {
-        case .register:
+        case .user:
             return .makeEndpoint("/user")
         case .update_fcm_token:
             return .makeEndpoint("/user/update_fcm_token")

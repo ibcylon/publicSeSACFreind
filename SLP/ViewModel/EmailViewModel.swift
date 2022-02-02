@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import UIKit
 
 class EmailViewModel: CommonViewModel {
     
@@ -17,27 +18,36 @@ class EmailViewModel: CommonViewModel {
     var placeholder = "sesac@gmail.com"
     var validText = BehaviorRelay<String>(value: "최소 8자 이상 필요해요")
     
+    var validStatus: Bool = false
+    
     struct Input {
         let email: ControlProperty<String?>
         let tap: ControlEvent<Void>
     }
     
     struct Output {
-        let validStatus: Driver<Bool>
-        let validText: BehaviorRelay<String>
+        let validStatus: Driver<ButtonStatus>
+//        let validText: BehaviorRelay<String>
         let sceneTransition: ControlEvent<Void>
+        //let buttonStatus: BehaviorRelay<UIButton.Configuration>
     }
     
     //유효성 검사
     func transform(input: Input) -> Output {
-        let result = input.email
-            .orEmpty
-            .map({ _ in
-                return true
-            })
-            .asDriver(onErrorJustReturn: true)
+//        let result = input.email
+//            .orEmpty
+//            .map({ return self.validate($0)
+//            })
+        let result = input.email.map { text in
+            
+            let bool = self.validate(text!)
+            return bool ? ButtonStatus.fill : ButtonStatus.disable
+            
+        }
+            .asDriver(onErrorJustReturn: ButtonStatus.disable)
         
-        return Output(validStatus: result, validText: validText, sceneTransition: input.tap)
+        //let status = BehaviorRelay<UIButton.Configuration>(value: .filled())
+        return Output(validStatus: result , sceneTransition: input.tap) // , buttonStatus: status)
     }
     
     func validate(_ input: String) -> Bool {

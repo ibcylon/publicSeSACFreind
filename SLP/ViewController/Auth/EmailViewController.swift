@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxCocoa
 import RxSwift
 
 class EmailViewController: UIViewController {
@@ -13,7 +14,7 @@ class EmailViewController: UIViewController {
     var viewModel = EmailViewModel()
     let mainView = EmailView()
     let disposeBag = DisposeBag()
-
+    
     override func loadView() {
         view = mainView
     }
@@ -33,16 +34,27 @@ class EmailViewController: UIViewController {
         
         let output = viewModel.transform(input: input)
         
-//        output.validStatus
-//            .asDriver(onErrorJustReturn: false)
-//
-//            .drive(mainView.button.rx.isEnabled)
-//            .disposed(by: disposeBag)
+        //        output.validStatus
+        //            .asDriver(onErrorJustReturn: false)
+        //
+        //            .drive(mainView.button.rx.isEnabled)
+        //            .disposed(by: disposeBag)
+        
+        output.validStatus
+            .drive(mainView.button.rx.status)
+            .disposed(by: disposeBag)
         
         output.sceneTransition
-            .subscribe {
-                print("Click")
-                self.navigationController?.pushViewController(BirthViewController(), animated: true)
+            .bind { _ in
+                self.resignFirstResponder()
+                if self.mainView.button.status == .fill {
+                    
+                    UserDefaults.standard.set(self.mainView.emailTextField.text, forKey: "email")
+                    self.navigationController?.pushViewController(GenderViewController(), animated: true)
+                } else {
+                    self.view.makeToast("이메일 형식이 올바르지 않습니다.")
+                }
             }
+            .disposed(by: disposeBag)
     }
 }

@@ -39,8 +39,9 @@ class BirthViewModel: CommonViewModel {
     
     func checkAultAge(_ date: Date) -> Bool {
         let distanceDays = Calendar.current.dateComponents([.day], from: date, to: Date.now)
-        let distanceTimeIntervals = date.timeIntervalSinceNow
-        print("component: ", distanceDays.day as Any)
+        //현재까지의 일 수
+        
+        
         return distanceDays.day! > 6205
     }
 }

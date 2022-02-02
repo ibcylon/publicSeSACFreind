@@ -46,21 +46,28 @@ class BirthViewController: UIViewController {
                 
                 let isAdult = self.viewModel.checkAultAge(self.mainView.datePicker.date)
                 if isAdult {
+                    
+                    UserDefaults.standard.set("\(self.mainView.datePicker.date)", forKey: "birth")
+                    
                     self.navigationController?.pushViewController(EmailViewController(), animated: true)
                 } else {
                     self.view.endEditing(true)
                     self.view.makeToast("17세 이상만 가입 가능합니다.")
                 }
             }
+            .disposed(by: disposeBag)
         
         mainView.datePicker.rx.value.subscribe { event in
+            
             guard let date = event.element else { return }
             let components = Calendar.current.dateComponents([.day, .month, .year], from: date)
             self.mainView.yearTextField.text = "\(components.year!)"
             self.mainView.monthTextField.text = "\(components.month!)"
             self.mainView.dayTextField.text = "\(components.day!)"
         }
+        .disposed(by: disposeBag)
         
         
     }
 }
+

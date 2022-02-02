@@ -38,7 +38,9 @@ class NicknameViewController: UIViewController {
         
         output.sceneTransition
             .subscribe { _ in
+                UserDefaults.standard.set(self.mainView.nicknameTextField.text, forKey: "nickname")
                 self.navigationController?.pushViewController(BirthViewController(), animated: true)
             }
+            .disposed(by: disposeBag)
     }
 }

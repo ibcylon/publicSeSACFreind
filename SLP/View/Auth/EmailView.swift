@@ -36,6 +36,8 @@ class EmailView: UIView, ViewRepresentable {
         titleLabel.numberOfLines = 0
         titleLabel.font = UIFont.Display1_R20
         button.backgroundColor = .brandGreen
+        
+        emailTextField.becomeFirstResponder()
     }
     
     func setupConstraints() {

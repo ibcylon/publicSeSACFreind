@@ -68,7 +68,7 @@ class VerifyViewController: UIViewController {
                     UserDefaults.standard.set(idToken, forKey: "idToken")
                     print(UserDefaults.standard.string(forKey: "idToken")!)
                 })
-                self.present(NicknameViewController(), animated: true, completion: nil)
+                self.navigationController?.pushViewController(NicknameViewController(), animated: true)
             }
             .disposed(by: disposeBag)
     }

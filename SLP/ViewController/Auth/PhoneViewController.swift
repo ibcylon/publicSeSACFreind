@@ -61,9 +61,9 @@ class PhoneViewController: UIViewController {
                     
                     self.mainView.currentVerification = verifyID!
                     UserDefaults.standard.set(self.mainView.currentVerification, forKey: "authVerificationID")
+                    UserDefaults.standard.set(self.mainView.phoneTextField.text, forKey: "phoneNumber")
                 }
-                
-                self.present(VerifyViewController(), animated: true, completion: nil)
+                self.navigationController?.pushViewController(VerifyViewController(), animated: true)
             }
             .disposed(by: disposeBag)
     }
