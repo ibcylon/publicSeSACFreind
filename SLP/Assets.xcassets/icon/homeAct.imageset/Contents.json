@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "homeAct.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

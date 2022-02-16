@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "myPageAct.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

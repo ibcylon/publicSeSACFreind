@@ -30,6 +30,7 @@ class GreenButton: UIButton {
             }
         }
     }
+    
     var validStatus:Bool = false
     override init(frame: CGRect) {
         super.init(frame: frame)

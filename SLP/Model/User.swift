@@ -1,8 +1,3 @@
-// This file was generated from JSON Schema using quicktype, do not modify it directly.
-// To parse the JSON, add this file to your project and do:
-//
-//   let user = try? newJSONDecoder().decode(User.self, from: jsonData)
-
 import Foundation
 
 // MARK: - User
@@ -22,9 +17,8 @@ struct User: Codable {
     let purchaseToken, transactionID, reviewedBefore: [String]
     let reportedNum: Int
     let reportedUser: [String]
-    let dodgepenalty: Int
-    let dodgepenaltyGetAt: String
-    let dodgeNum, ageMin, ageMax, searchable: Int
+    let dodgepenalty, dodgeNum, ageMin, ageMax: Int
+    let searchable: Int
     let createdAt: String
 
     enum CodingKeys: String, CodingKey {
@@ -34,8 +28,23 @@ struct User: Codable {
         case fcMtoken = "FCMtoken"
         case nick, birth, gender, hobby, comment, reputation, sesac, sesacCollection, background, backgroundCollection, purchaseToken
         case transactionID = "transactionId"
-        case reviewedBefore, reportedNum, reportedUser, dodgepenalty
-        case dodgepenaltyGetAt = "dodgepenalty_getAt"
-        case dodgeNum, ageMin, ageMax, searchable, createdAt
+        case reviewedBefore, reportedNum, reportedUser, dodgepenalty, dodgeNum, ageMin, ageMax, searchable, createdAt
     }
 }
+
+struct UserObject: Codable {
+    var phoneNumber: String
+    var fcmToken: String
+    var nick: String
+    let email: String
+    let birth: Date
+    var gender: Int
+    
+    enum CodingKeys: String, CodingKey {
+        case phoneNumber
+        case fcmToken = "FCMtoken"
+        case nick, birth, email, gender
+    }
+}
+
+

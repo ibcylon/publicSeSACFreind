@@ -41,7 +41,6 @@ class BirthViewModel: CommonViewModel {
         let distanceDays = Calendar.current.dateComponents([.day], from: date, to: Date.now)
         //현재까지의 일 수
         
-        
         return distanceDays.day! > 6205
     }
 }

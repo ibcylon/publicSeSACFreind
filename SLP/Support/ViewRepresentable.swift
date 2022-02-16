@@ -6,8 +6,21 @@
 //
 
 import Foundation
+import UIKit
+import RxSwift
 
 protocol ViewRepresentable {
-    func configure()
-    func setupConstraints()
 }
+
+extension ViewRepresentable {
+    private func configure() {
+        
+    }
+    
+    private func setupConstraints() {
+        
+    }
+}
+//protocol ViewBindable {
+//    func
+//}

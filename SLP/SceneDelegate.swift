@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -16,11 +17,61 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
+        
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
         window?.windowScene = windowScene
-        window?.rootViewController = UINavigationController(rootViewController: BirthViewController())
-        window?.makeKeyAndVisible()
+        //window?.rootViewController = UINavigationController(rootViewController: MyPageViewController())
+        //window?.makeKeyAndVisible()
+//        UINavigationBar.appearance().backIndicatorImage = UIImage(named: "arrow")
+//        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "arrow")
+//
+        if Auth.auth().currentUser == nil {
+            window?.rootViewController =  UINavigationController(rootViewController: PhoneViewController())
+            window?.makeKeyAndVisible()
+            
+            return
+        } else {
+            Auth.auth().currentUser?.getIDToken(completion: { idToken, error in
+                guard let idToken = idToken else {
+                    self.window?.rootViewController =  UINavigationController(rootViewController: PhoneViewController())
+                    self.window?.makeKeyAndVisible()
+                    
+                    return
+                }
+                
+                UserDefaults.standard.set(idToken, forKey: "idToken")
+                
+                DispatchQueue.main.async {
+                    APIService.getUser { user, statusCode, error in
+                        guard let statusCode = statusCode else {
+                            return
+                        }
+                        
+                        switch statusCode {
+                        case 200:
+                            self.window?.rootViewController =  CustomTabBarController()
+                            self.window?.makeKeyAndVisible()
+                        case 401:
+                            self.window?.rootViewController =  UINavigationController(rootViewController: NicknameViewController())
+                            self.window?.makeKeyAndVisible()
+                        default :
+                            self.window?.rootViewController =  UINavigationController(rootViewController: PhoneViewController())
+                            self.window?.makeKeyAndVisible()
+                            
+                        }
+                    }
+                }
+                
+                
+                
+                
+            })
+        }
+        
+       
+        //UINavigationBar.appearance().backItem = UINavigationItem(title: "")
+        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -50,6 +101,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
     }
+
 
 
 }
