@@ -60,6 +60,7 @@ class GenderViewController: UIViewController {
                     print(code)
                     switch code {
                     case 200:
+                        Storage.setCurrentState(scene: Scene.main)
                         self.view.makeToast("회원가입이 완료되었습니다.")
                         self.navigationController?.pushViewController(HomeViewController(), animated: true)
 

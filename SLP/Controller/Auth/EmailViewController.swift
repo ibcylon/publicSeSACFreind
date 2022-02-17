@@ -35,11 +35,6 @@ class EmailViewController: UIViewController {
         
         let output = viewModel.transform(input: input)
         
-        //        output.validStatus
-        //            .asDriver(onErrorJustReturn: false)
-        //
-        //            .drive(mainView.button.rx.isEnabled)
-        //            .disposed(by: disposeBag)
         
         output.validStatus
             .drive(mainView.button.rx.status)
@@ -57,5 +52,11 @@ class EmailViewController: UIViewController {
                 }
             }
             .disposed(by: disposeBag)
+        
+        //        output.validStatus
+        //            .asDriver(onErrorJustReturn: false)
+        //
+        //            .drive(mainView.button.rx.isEnabled)
+        //            .disposed(by: disposeBag)
     }
 }

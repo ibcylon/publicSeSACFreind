@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D50342F027BE15D300CFED38 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50342EF27BE15D300CFED38 /* Storage.swift */; };
+		D50342F227BE19B200CFED38 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50342F127BE19B200CFED38 /* OnboardingViewController.swift */; };
 		D53F697227BAAF6B007E53CF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F697127BAAF6B007E53CF /* HomeViewController.swift */; };
-		D53F697427BAAFA6007E53CF /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F697327BAAFA6007E53CF /* BaseController.swift */; };
+		D53F697427BAAFA6007E53CF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F697327BAAFA6007E53CF /* BaseViewController.swift */; };
 		D53F697727BB272F007E53CF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F697627BB272F007E53CF /* HomeView.swift */; };
 		D53F697927BB7029007E53CF /* CustomAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F697827BB7029007E53CF /* CustomAnnotationView.swift */; };
 		D53F697C27BB737E007E53CF /* DTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F697B27BB737E007E53CF /* DTO.swift */; };
@@ -18,7 +20,6 @@
 		D556D4DD27ACF2CB00807AF5 /* MyPageVIewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556D4DC27ACF2CB00807AF5 /* MyPageVIewModel.swift */; };
 		D556D4DF27ACF39800807AF5 /* MyPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556D4DE27ACF39800807AF5 /* MyPageView.swift */; };
 		D556D4E127ACF86C00807AF5 /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556D4E027ACF86C00807AF5 /* CustomTabBarController.swift */; };
-		D556D4E327AD01E100807AF5 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556D4E227AD01E100807AF5 /* BaseViewController.swift */; };
 		D556D4E527AD0CC000807AF5 /* MyPageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556D4E427AD0CC000807AF5 /* MyPageCell.swift */; };
 		D556D4E727AD0D0E00807AF5 /* MyPageDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556D4E627AD0D0E00807AF5 /* MyPageDetailView.swift */; };
 		D556D4E927AD30E100807AF5 /* CustomNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D556D4E827AD30E100807AF5 /* CustomNavigationController.swift */; };
@@ -86,8 +87,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D50342EF27BE15D300CFED38 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
+		D50342F127BE19B200CFED38 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
 		D53F697127BAAF6B007E53CF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		D53F697327BAAFA6007E53CF /* BaseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		D53F697327BAAFA6007E53CF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D53F697627BB272F007E53CF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		D53F697827BB7029007E53CF /* CustomAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnnotationView.swift; sourceTree = "<group>"; };
 		D53F697B27BB737E007E53CF /* DTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DTO.swift; sourceTree = "<group>"; };
@@ -97,7 +100,6 @@
 		D556D4DC27ACF2CB00807AF5 /* MyPageVIewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageVIewModel.swift; sourceTree = "<group>"; };
 		D556D4DE27ACF39800807AF5 /* MyPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageView.swift; sourceTree = "<group>"; };
 		D556D4E027ACF86C00807AF5 /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
-		D556D4E227AD01E100807AF5 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D556D4E427AD0CC000807AF5 /* MyPageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageCell.swift; sourceTree = "<group>"; };
 		D556D4E627AD0D0E00807AF5 /* MyPageDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPageDetailView.swift; sourceTree = "<group>"; };
 		D556D4E827AD30E100807AF5 /* CustomNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomNavigationController.swift; sourceTree = "<group>"; };
@@ -353,7 +355,8 @@
 				D53F697027BAAF61007E53CF /* Home */,
 				D556D4EB27AE41AC00807AF5 /* Main */,
 				D5F1DBE3279FD4DA005CDA8D /* Auth */,
-				D53F697327BAAFA6007E53CF /* BaseController.swift */,
+				D53F697327BAAFA6007E53CF /* BaseViewController.swift */,
+				D50342F127BE19B200CFED38 /* OnboardingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -371,7 +374,6 @@
 		D5F1DB792796635E005CDA8D /* Support */ = {
 			isa = PBXGroup;
 			children = (
-				D556D4E227AD01E100807AF5 /* BaseViewController.swift */,
 				D5F1DBDE279E683C005CDA8D /* Util.swift */,
 				D5F1DB932797D467005CDA8D /* UIFont+Extension.swift */,
 				D5F1DBAC279D3546005CDA8D /* UIColor+Extension.swift */,
@@ -379,6 +381,7 @@
 				D5F1DBA82798E07B005CDA8D /* ViewRepresentable.swift */,
 				D556D4E827AD30E100807AF5 /* CustomNavigationController.swift */,
 				D556D4E027ACF86C00807AF5 /* CustomTabBarController.swift */,
+				D50342EF27BE15D300CFED38 /* Storage.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -539,13 +542,13 @@
 				D556D4E527AD0CC000807AF5 /* MyPageCell.swift in Sources */,
 				D5F1DB982797DBBF005CDA8D /* GreenButton.swift in Sources */,
 				D556D4ED27AE41C100807AF5 /* MyPageDetailViewController.swift in Sources */,
-				D556D4E327AD01E100807AF5 /* BaseViewController.swift in Sources */,
 				D53F697227BAAF6B007E53CF /* HomeViewController.swift in Sources */,
 				D5F1DB6027966241005CDA8D /* AppDelegate.swift in Sources */,
 				D5F1DBB1279D584B005CDA8D /* VerifyView.swift in Sources */,
+				D50342F227BE19B200CFED38 /* OnboardingViewController.swift in Sources */,
 				D53F698027BD09CA007E53CF /* SesacTitleCell.swift in Sources */,
 				D5F1DBC4279DB526005CDA8D /* BirthViewController.swift in Sources */,
-				D53F697427BAAFA6007E53CF /* BaseController.swift in Sources */,
+				D53F697427BAAFA6007E53CF /* BaseViewController.swift in Sources */,
 				D53F697927BB7029007E53CF /* CustomAnnotationView.swift in Sources */,
 				D5F1DBBA279DB4AC005CDA8D /* NicknameViewModel.swift in Sources */,
 				D5F1DB942797D467005CDA8D /* UIFont+Extension.swift in Sources */,
@@ -571,6 +574,7 @@
 				D5F1DBAD279D3546005CDA8D /* UIColor+Extension.swift in Sources */,
 				D5F1DBDF279E683C005CDA8D /* Util.swift in Sources */,
 				D5F1DBCC279DB566005CDA8D /* GenderView.swift in Sources */,
+				D50342F027BE15D300CFED38 /* Storage.swift in Sources */,
 				D5E0EBA827BA8C700048DADB /* OnQueueResult.swift in Sources */,
 				D5F1DBC0279DB4FF005CDA8D /* GenderViewModel.swift in Sources */,
 				D556D4DA27ACF22600807AF5 /* MyPageViewController.swift in Sources */,

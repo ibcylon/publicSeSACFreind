@@ -105,7 +105,7 @@ class APIService {
     static func getUser(completion: @escaping (User?, Int?, Error?) -> Void) {
         print(EndPoint.user.url)
         
-        AF.request(EndPoint.user.url.absoluteString,
+        AF.request(EndPoint.user.url,
                    method: .get,
                    headers: commonHeader
         ).responseDecodable(of: User.self) { response in

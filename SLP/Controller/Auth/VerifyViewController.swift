@@ -69,11 +69,13 @@ final class VerifyViewController: UIViewController {
                             
                             switch statusCode {
                             case 200:
-                                self.navigationController?.pushViewController(MainViewController(), animated: true)
+                                Storage.setCurrentState(scene: Scene.main)
+                                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(Storage.currentState())
                             case 401:
                                 //토큰 이상함
                                 print("\n\ntoken 불량\n\n")
                             case 406:
+                                Storage.setCurrentState(scene: Scene.email)
                                 self.navigationController?.pushViewController(NicknameViewController(), animated: true)
                             case 500:
                                 print("Server Error")
@@ -98,11 +100,15 @@ final class VerifyViewController: UIViewController {
         
         PhoneAuthProvider.provider()
             .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verficationId, error in
+                if let error = error {
+                    print(error.localizedDescription)
+                    return
+                }
+                
                 guard let verficationId = verficationId else {
-                    self.view.makeToast("재전송에 실패하였습니다.")
                     return }
                 
-                
+                UserDefaults.standard.set(verficationId ,forKey: "authVerificationID")
             }
     }
 }
