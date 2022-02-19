@@ -38,6 +38,8 @@ class VerifyView: UIView, ViewRepresentable {
         addSubview(timerLabel)
         
         backgroundColor = .white
+        
+        VerifyTextField.textContentType = .oneTimeCode
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
         titleLabel.font = UIFont.Display1_R20

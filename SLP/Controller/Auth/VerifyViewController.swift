@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import FirebaseAuth
 
-final class VerifyViewController: UIViewController {
+final class VerifyViewController: BaseViewController {
     
     var viewModel = VerifyViewModel()
     let mainView = VerifyView()

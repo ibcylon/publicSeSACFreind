@@ -41,7 +41,6 @@ class APIService {
     
     //MARK: Auth
     static func login(completion: @escaping (Int?, APIError?) -> Void){
-        
         AF.request(EndPoint.user.url,
                    method: .get,
                    headers: commonHeader)
@@ -89,8 +88,14 @@ class APIService {
     }
     
     static func refreshToken(){
+        
         let currentUserInstance = Auth.auth().currentUser
-        currentUserInstance?.getIDTokenForcingRefresh(true, completion: { idToken, error in
+        guard let currentUserInstance = currentUserInstance else {
+            return
+        }
+        
+        currentUserInstance.getIDTokenForcingRefresh(true) { idToken, error in
+            print(#function)
             if let error = error {
                 print(error.localizedDescription)
                 return
@@ -98,7 +103,7 @@ class APIService {
             
             UserDefaults.standard.set(idToken, forKey: "idToken")
             print(UserDefaults.standard.string(forKey: "idToken")!)
-        })
+        }
     }
     
     //MARK: User

@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		D50342F027BE15D300CFED38 /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50342EF27BE15D300CFED38 /* Storage.swift */; };
 		D50342F227BE19B200CFED38 /* OnboardingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50342F127BE19B200CFED38 /* OnboardingViewController.swift */; };
+		D50342F427BFB2C000CFED38 /* UserAPIStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50342F327BFB2C000CFED38 /* UserAPIStatusCode.swift */; };
+		D50342F627BFB6AB00CFED38 /* QueueAPIStatusCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50342F527BFB6AB00CFED38 /* QueueAPIStatusCode.swift */; };
+		D50342FA27C1130E00CFED38 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = D50342F927C1130E00CFED38 /* .swiftlint.yml */; };
 		D53F697227BAAF6B007E53CF /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F697127BAAF6B007E53CF /* HomeViewController.swift */; };
 		D53F697427BAAFA6007E53CF /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F697327BAAFA6007E53CF /* BaseViewController.swift */; };
 		D53F697727BB272F007E53CF /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D53F697627BB272F007E53CF /* HomeView.swift */; };
@@ -89,6 +92,9 @@
 /* Begin PBXFileReference section */
 		D50342EF27BE15D300CFED38 /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		D50342F127BE19B200CFED38 /* OnboardingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingViewController.swift; sourceTree = "<group>"; };
+		D50342F327BFB2C000CFED38 /* UserAPIStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAPIStatusCode.swift; sourceTree = "<group>"; };
+		D50342F527BFB6AB00CFED38 /* QueueAPIStatusCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueAPIStatusCode.swift; sourceTree = "<group>"; };
+		D50342F927C1130E00CFED38 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text.yaml; path = .swiftlint.yml; sourceTree = "<group>"; };
 		D53F697127BAAF6B007E53CF /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		D53F697327BAAFA6007E53CF /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		D53F697627BB272F007E53CF /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -281,6 +287,8 @@
 				D5F1DBA42798E047005CDA8D /* APIService.swift */,
 				D5F1DBB2279D58A8005CDA8D /* FirebaseAPI.swift */,
 				D5F1DBA62798E04E005CDA8D /* EndPoint.swift */,
+				D50342F327BFB2C000CFED38 /* UserAPIStatusCode.swift */,
+				D50342F527BFB6AB00CFED38 /* QueueAPIStatusCode.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -306,6 +314,7 @@
 		D5F1DB5E27966241005CDA8D /* SLP */ = {
 			isa = PBXGroup;
 			children = (
+				D50342F927C1130E00CFED38 /* .swiftlint.yml */,
 				D5E0EBA327B9F28E0048DADB /* API */,
 				D5F1DBB4279D65F1005CDA8D /* SLP.entitlements */,
 				D5F1DB8427978FF8005CDA8D /* fonts */,
@@ -442,6 +451,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D5F1DB7027966243005CDA8D /* Build configuration list for PBXNativeTarget "SLP" */;
 			buildPhases = (
+				D50342F827C1128F00CFED38 /* SwiftLint Script */,
 				D5F1DB5827966241005CDA8D /* Sources */,
 				D5F1DB5927966241005CDA8D /* Frameworks */,
 				D5F1DB5A27966241005CDA8D /* Resources */,
@@ -497,6 +507,7 @@
 				D5A0C8DC27B3623D00581E3A /* XCRemoteSwiftPackageReference "RxSwift" */,
 				D5A0C8E127B3625B00581E3A /* XCRemoteSwiftPackageReference "SnapKit" */,
 				D5E0EB8F27B94C640048DADB /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				D50342F727C1126300CFED38 /* XCRemoteSwiftPackageReference "SwiftLint" */,
 			);
 			productRefGroup = D5F1DB5D27966241005CDA8D /* Products */;
 			projectDirPath = "";
@@ -522,10 +533,32 @@
 				D5F1DB7B27966504005CDA8D /* GoogleService-Info.plist in Resources */,
 				D5F1DB8D27978FF8005CDA8D /* NotoSansKR-Bold.otf in Resources */,
 				D5F1DB9027978FF8005CDA8D /* NotoSansKR-Black.otf in Resources */,
+				D50342FA27C1130E00CFED38 /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D50342F827C1128F00CFED38 /* SwiftLint Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "SwiftLint Script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D5F1DB5827966241005CDA8D /* Sources */ = {
@@ -533,6 +566,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D5BE721027B19952009397BE /* BackgroundView.swift in Sources */,
+				D50342F627BFB6AB00CFED38 /* QueueAPIStatusCode.swift in Sources */,
 				D556D4E927AD30E100807AF5 /* CustomNavigationController.swift in Sources */,
 				D5F1DB6427966241005CDA8D /* PhoneViewController.swift in Sources */,
 				D5F1DBB3279D58A8005CDA8D /* FirebaseAPI.swift in Sources */,
@@ -560,6 +594,7 @@
 				D5F1DBA52798E047005CDA8D /* APIService.swift in Sources */,
 				D5F1DBE5279FDFD5005CDA8D /* AuthView.swift in Sources */,
 				D5E0EBA227B9E64F0048DADB /* HomeViewModel.swift in Sources */,
+				D50342F427BFB2C000CFED38 /* UserAPIStatusCode.swift in Sources */,
 				D53F697727BB272F007E53CF /* HomeView.swift in Sources */,
 				D5F1DB9A2797DC89005CDA8D /* TitleLabel.swift in Sources */,
 				D5DB82CE27B236BE00892F05 /* AssessViewCell.swift in Sources */,
@@ -803,6 +838,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		D50342F727C1126300CFED38 /* XCRemoteSwiftPackageReference "SwiftLint" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/SwiftLint.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		D5A0C8DC27B3623D00581E3A /* XCRemoteSwiftPackageReference "RxSwift" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/ReactiveX/RxSwift.git";
