@@ -79,21 +79,17 @@ class MyPageBottomView: UIView, ViewRepresentable {
         $0.text = "회원 탈퇴"
         $0.font = .Title4_R14
     }
-    
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
         setupConstraints()
     }
-    
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    
-    
     func setupConstraints() {
         addSubview(nameLabel)
         addSubview(manButton)
@@ -192,7 +188,6 @@ class MyPageBottomView: UIView, ViewRepresentable {
     }
     
     func configure() {
-        
         
     }
    

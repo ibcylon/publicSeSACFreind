@@ -33,14 +33,12 @@ extension UIButton.Configuration {
         style.background = background
         
         style.attributedTitle = AttributedString(style.title ?? "다음", attributes: container)
-        
-        
+
         style.baseForegroundColor = .black
         
         return style
     }
 
-    
     public static func fillStyle() -> UIButton.Configuration {
         var style = UIButton.Configuration.plain()
         var background = UIButton.Configuration.plain().background
@@ -72,8 +70,7 @@ extension UIButton.Configuration {
         
         return style
     }
-    
-    //질문 이건 왜 buttonConfiguration과 다르게 메소드 호출하면 오류가 날까?
+
     public static func setGenderHandler() -> UIButton.ConfigurationUpdateHandler {
         let handler: UIButton.ConfigurationUpdateHandler = { button in
             switch button.state {
@@ -85,8 +82,5 @@ extension UIButton.Configuration {
         }
         return handler
     }
-    
-    
+
 }
-
-

@@ -30,12 +30,11 @@ class EmailViewController: UIViewController {
         bind()
     }
     
-    func bind(){
+    func bind() {
         let input = EmailViewModel.Input(email: mainView.emailTextField.rx.text, tap: mainView.button.rx.tap)
         
         let output = viewModel.transform(input: input)
-        
-        
+
         output.validStatus
             .drive(mainView.button.rx.status)
             .disposed(by: disposeBag)

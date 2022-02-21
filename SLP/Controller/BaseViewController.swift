@@ -19,11 +19,6 @@ class BaseViewController: UIViewController {
     override func viewDidLoad() {
         setLeftArrowButton()
     }
-    
-//    //let mainView: T
-//    let viewModel: T//
-    
-    
 }
 
 class BaseViewModel {}

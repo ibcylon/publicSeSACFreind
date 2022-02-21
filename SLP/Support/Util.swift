@@ -5,16 +5,8 @@
 //  Created by Kanghos on 2022/01/24.
 //
 
-
 import UIKit
 import FirebaseAuth
-
-extension DateFormatter {
-    
-    
-}
-
-
 
 extension UIViewController {
     
@@ -42,7 +34,7 @@ extension UIViewController {
             
             if let idToken = idToken {
                 UserDefaults.standard.set(idToken, forKey: "idToken")
-                completion(idToken,nil)
+                completion(idToken, nil)
                 
             }
             
@@ -70,11 +62,12 @@ extension UILabel {
 }
 
 class ClickListener: UITapGestureRecognizer {
-    var onClick : (() -> Void)? = nil
+    var onClick: (() -> Void)?
 }
+
 extension UIView {
     
-    func setOnClickListener(action :@escaping () -> Void){
+    func setOnClickListener(action :@escaping () -> Void) {
         let tapRecogniser = ClickListener(target: self, action: #selector(onViewClicked(sender:)))
         tapRecogniser.onClick = action
         self.addGestureRecognizer(tapRecogniser)

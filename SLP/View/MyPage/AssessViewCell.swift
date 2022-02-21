@@ -14,7 +14,6 @@ struct BadgeState {
     let isOn: Bool
 }
 
-//MyPage 개인 타이틀 및 리뷰
 final class AssessViewCell: UITableViewCell, ViewRepresentable {
     
     static let identifier = "AssessViewCell"
@@ -31,17 +30,13 @@ final class AssessViewCell: UITableViewCell, ViewRepresentable {
     let reviewLabel = UILabel()
     let reviewTextView = UITextView()
     var sesacTitles: [BadgeState] = []
-    
-    
-    
+
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         configure()
         setupConstraints()
-        
-        
-        
+
     }
     
     required init?(coder: NSCoder) {
@@ -70,8 +65,7 @@ final class AssessViewCell: UITableViewCell, ViewRepresentable {
         sesacTitleLabel.textColor = .black
         sesacTitleLabel.font = .Title6_R12
         sesacTitleLabel.text = "새싹 타이틀"
-        
-        
+
         let flowLayout = UICollectionViewFlowLayout()
         flowLayout.scrollDirection = .vertical
         flowLayout.minimumLineSpacing = 8
@@ -81,8 +75,7 @@ final class AssessViewCell: UITableViewCell, ViewRepresentable {
         collectionView.dataSource = self
         collectionView.register(SesacTitleCell.self, forCellWithReuseIdentifier: SesacTitleCell.identifier)
         collectionView.isScrollEnabled = false
-        
-        
+
         reviewLabel.textColor = .black
         reviewLabel.font = .Title6_R12
         reviewLabel.text = "새싹 리뷰"
@@ -97,7 +90,7 @@ final class AssessViewCell: UITableViewCell, ViewRepresentable {
     }
     
     private func setupConstraints() {
-        [nicknameLabel, toggleButton, reviewLabel, reviewTextView,  stackView].forEach {
+        [nicknameLabel, toggleButton, reviewLabel, reviewTextView, stackView].forEach {
             addSubview($0)
         }
         stackView.addArrangedSubview(titleContainerView)
@@ -154,7 +147,8 @@ extension AssessViewCell: UICollectionViewDelegate, UICollectionViewDataSource, 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SesacTitleCell.identifier, for: indexPath) as? SesacTitleCell else { return UICollectionViewCell() }
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SesacTitleCell.identifier, for: indexPath) as? SesacTitleCell
+        else { return UICollectionViewCell() }
         
         let badge = sesacTitles[indexPath.row]
         
@@ -176,8 +170,4 @@ extension AssessViewCell: UICollectionViewDelegate, UICollectionViewDataSource, 
         let width = (UIScreen.main.bounds.width - (inset * 2) - (padding * 2) - spacing - 5) / 2
         return CGSize(width: width, height: 32)
     }
-    
-    
-    
-    
 }

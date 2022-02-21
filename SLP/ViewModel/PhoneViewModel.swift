@@ -13,7 +13,7 @@ protocol CommonViewModel {
     
     associatedtype Output
     associatedtype Input
-    var disposeBag : DisposeBag { get set }
+    var disposeBag: DisposeBag { get set }
     var title: String { get }
     var description: String { get }
     
@@ -38,7 +38,7 @@ class PhoneViewModel: CommonViewModel {
         let sceneTransition: ControlEvent<Void>
     }
     
-    //유효성 검사
+    // 유효성 검사
     func transform(input: Input) -> Output {
         let result = input.phoneNumber
             .orEmpty

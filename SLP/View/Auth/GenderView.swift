@@ -33,8 +33,7 @@ class GenderView: UIView, ViewRepresentable {
         addSubview(titleLabel)
         addSubview(descriptionLabel)
         addSubview(genderContainer)
-        
-        
+
         backgroundColor = .white
         
         genderContainer.axis = .horizontal
@@ -56,8 +55,6 @@ class GenderView: UIView, ViewRepresentable {
         maleButton.configuration?.image = UIImage(named: "man")
         maleButton.configurationUpdateHandler = handler
         
-        
-        
         femaleButton.configuration = .genderStyle()
         femaleButton.configuration?.title = "여자"
         femaleButton.configuration?.image = UIImage(named: "woman")
@@ -66,15 +63,12 @@ class GenderView: UIView, ViewRepresentable {
         [maleButton, femaleButton].forEach {
             genderContainer.addArrangedSubview($0)
         }
-        
-        
     }
     
     func setupConstraints() {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(185)
             make.centerX.equalToSuperview()
-            //make.height.equalTo(100)
             
         }
         descriptionLabel.snp.makeConstraints { make in

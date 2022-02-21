@@ -54,7 +54,4 @@ class AuthView: UIView, ViewRepresentable {
             make.height.equalTo(50)
         }
     }
-    
-    
-    
 }

@@ -15,7 +15,7 @@ final class MyPageViewController: UIViewController {
         bind()
     }
     
-    private func bind(){
+    private func bind() {
         
         viewModel.fetch()
         title = viewModel.title
@@ -46,7 +46,7 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        //내 정보 셀
+        // 내 정보 셀
         if indexPath.section == 0 {
             guard let cell =  mainView.tableView.dequeueReusableCell(withIdentifier: MyPageCell.identifier, for: indexPath) as? MyPageCell else {
                 return UITableViewCell()
@@ -81,11 +81,9 @@ extension MyPageViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
         if indexPath.section == 0 {
-            let vc = MyPageDetailViewController()
+            let viewController = MyPageDetailViewController()
             
-            self.navigationController?.pushViewController(vc, animated: true)
+            self.navigationController?.pushViewController(viewController, animated: true)
         }
     }
-    
-    
 }

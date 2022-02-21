@@ -29,8 +29,6 @@ final class BackgourndView: UIView, ViewRepresentable {
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.image = UIImage(named: "sesac_background_1")
         
-        //alt 처리 고민해보기
-        
         avartarImageView.image = UIImage(named: "sesac_face_1")
         
     }

@@ -14,7 +14,5 @@ class CustomNavigationController: UINavigationController {
         self.navigationBar.titleTextAttributes = [
             .font: UIFont.Title3_M14!
         ]
-        
-        
     }
 }

@@ -31,7 +31,7 @@ class BirthViewModel: CommonViewModel {
     func transform(input: Input) -> Output {
         let result = input.birthdate
             .orEmpty
-            .map { $0.count > 0}
+            .map { !$0.isEmpty}
             .share(replay: 1, scope: .whileConnected)
         
         return Output(validStatus: result, validText: validText, sceneTransition: input.tap)
@@ -39,10 +39,8 @@ class BirthViewModel: CommonViewModel {
     
     func checkAultAge(_ date: Date) -> Bool {
         let distanceDays = Calendar.current.dateComponents([.day], from: date, to: Date.now)
-        //현재까지의 일 수
+        // 현재까지의 일 수
         
         return distanceDays.day! > 6205
     }
 }
-
-

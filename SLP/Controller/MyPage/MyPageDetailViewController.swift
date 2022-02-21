@@ -28,8 +28,6 @@ final class MyPageDetailViewController: UIViewController {
         self.mainView.tableView.delegate = self
         self.mainView.tableView.dataSource = self
         self.mainView.tableView.register(AssessViewCell.self, forCellReuseIdentifier: AssessViewCell.identifier)
-       
-   
         self.mainView.tableView.isUserInteractionEnabled = true
         self.mainView.tableView.isScrollEnabled = false
         self.mainView.tableView.reloadData()
@@ -50,12 +48,11 @@ final class MyPageDetailViewController: UIViewController {
         self.mainView.bottomView.withDrawLabel.isUserInteractionEnabled = true
         self.mainView.bottomView.withDrawLabel.addGestureRecognizer(tapRecognizer)
     }
-    
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        viewModel.getUser { user, statusCode, error in
+        viewModel.getUser { user, _, _ in
             
             guard let user = user else {
                 return
@@ -97,7 +94,7 @@ final class MyPageDetailViewController: UIViewController {
     }
     
     func withDrawSign() {
-        APIService.withdrawUser { statusCode, error in
+        APIService.withdrawUser { statusCode, _ in
             
             switch statusCode {
             case 200, 406:
@@ -114,7 +111,7 @@ final class MyPageDetailViewController: UIViewController {
                     UIView.transition(with: windowScene.windows.first!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
                 }
             case 401:
-                self.refreshFirebaseIdToken { idToken, error in
+                self.refreshFirebaseIdToken { idToken, _ in
                     if let idToken = idToken {
                         print(idToken)
                         self.withDrawSign()
@@ -166,7 +163,7 @@ final class MyPageDetailViewController: UIViewController {
             case 200:
                 self.view.makeToast("수정이 완료되었습니다")
             case 401:
-                self.refreshFirebaseIdToken { idToken, error in
+                self.refreshFirebaseIdToken { _, _ in
                     
                     self.viewModel.updateUser(updateDTO: updateDTO) { statusCode in
                         switch statusCode {
@@ -195,7 +192,7 @@ final class MyPageDetailViewController: UIViewController {
     
     @objc func onWithDrawLabelClicked() {
         let alert = UIAlertController(title: "회원탈퇴", message: "정말로 회원 탈퇴를 진행하시겠습니까?", preferredStyle: .alert)
-        let ok = UIAlertAction(title: "확인", style: .destructive) { alertaction in
+        let ok = UIAlertAction(title: "확인", style: .destructive) { _ in
             self.withDrawSign()
         }
         let cancel = UIAlertAction(title: "취소", style: .cancel)
@@ -213,7 +210,7 @@ extension MyPageDetailViewController: UITableViewDelegate, UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        guard let cell = tableView.dequeueReusableCell(withIdentifier:AssessViewCell.identifier, for: indexPath) as? AssessViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AssessViewCell.identifier, for: indexPath) as? AssessViewCell else { return UITableViewCell() }
         
         viewModel.userModel?.bind {
             cell.nicknameLabel.text = $0.nick

@@ -11,8 +11,6 @@ import RxCocoa
 import FirebaseAuth
 
 final class PhoneViewController: UIViewController {
-    
-    
 
     var viewModel = PhoneViewModel()
     var mainView = PhoneView()
@@ -25,8 +23,7 @@ final class PhoneViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        
+
         mainView.button.setTitle("인증 문자 받기", for: .normal)
         mainView.titleLabel.text = viewModel.title
         mainView.phoneTextField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
@@ -34,7 +31,7 @@ final class PhoneViewController: UIViewController {
         
     }
     
-    func bind(){
+    func bind() {
         let input = PhoneViewModel.Input(phoneNumber: mainView.phoneTextField.rx.text, tap: mainView.button.rx.tap)
         
         let output = viewModel.transform(input: input)
@@ -42,9 +39,7 @@ final class PhoneViewController: UIViewController {
         output.validStatus
             .bind(to: mainView.button.rx.validStatus)
             .disposed(by: disposeBag)
-        
-        
-        
+
         output.sceneTransition
             .subscribe { _ in
                 
@@ -69,9 +64,4 @@ final class PhoneViewController: UIViewController {
             }
             .disposed(by: disposeBag)
     }
-    
-    
-    
 }
-
-

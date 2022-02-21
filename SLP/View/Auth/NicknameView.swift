@@ -55,7 +55,4 @@ class NicknameView: UIView, ViewRepresentable {
             make.height.equalTo(50)
         }
     }
-    
-    
-    
 }

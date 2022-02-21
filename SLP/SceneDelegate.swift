@@ -24,56 +24,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.rootViewController = Storage.currentState()
         window?.makeKeyAndVisible()
         
-        
-//        UINavigationBar.appearance().backIndicatorImage = UIImage(named: "arrow")
-//        UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "arrow")
-//
-//        if Auth.auth().currentUser == nil {
-//            window?.rootViewController =  UINavigationController(rootViewController: PhoneViewController())
-//            window?.makeKeyAndVisible()
-//
-//            return
-//        } else {
-//            Auth.auth().currentUser?.getIDToken(completion: { idToken, error in
-//                guard let idToken = idToken else {
-//                    self.window?.rootViewController =  UINavigationController(rootViewController: PhoneViewController())
-//                    self.window?.makeKeyAndVisible()
-//
-//                    return
-//                }
-//
-//                UserDefaults.standard.set(idToken, forKey: "idToken")
-//
-//                DispatchQueue.main.async {
-//                    APIService.getUser { user, statusCode, error in
-//                        guard let statusCode = statusCode else {
-//                            return
-//                        }
-//
-//                        switch statusCode {
-//                        case 200:
-//                            self.window?.rootViewController =  CustomTabBarController()
-//                            self.window?.makeKeyAndVisible()
-//                        case 401:
-//                            self.window?.rootViewController =  UINavigationController(rootViewController: NicknameViewController())
-//                            self.window?.makeKeyAndVisible()
-//                        default :
-//                            self.window?.rootViewController =  UINavigationController(rootViewController: PhoneViewController())
-//                            self.window?.makeKeyAndVisible()
-//
-//                        }
-//                    }
-//                }
-//
-//
-//
-//
-//            })
-//
-        
-       
-        //UINavigationBar.appearance().backItem = UINavigationItem(title: "")
-        
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -104,8 +54,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // to restore the scene back to its current state.
     }
 
-    
-
 }
 
 extension SceneDelegate {
@@ -117,4 +65,3 @@ extension SceneDelegate {
         UIView.transition(with: window, duration: 0.5, options: [.transitionFlipFromLeft], animations: nil, completion: nil)
     }
 }
-

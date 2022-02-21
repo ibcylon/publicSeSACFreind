@@ -109,7 +109,6 @@ final class HomeView: UIView, ViewRepresentable {
             $0.configurationUpdateHandler = handler
         }
         
-        
         genderButtonStackView.layer.cornerRadius = 10
         genderButtonStackView.clipsToBounds = true
         genderButtonStackView.layer.shadowOffset = CGSize(width: 3, height: 3)

@@ -32,8 +32,7 @@ final class MyPageDetailView: UIView, ViewRepresentable {
         tableView.backgroundColor = .white
         tableView.isScrollEnabled = false
         tableView.isUserInteractionEnabled = false
-        
-        
+
         bottomView.backgroundColor = .white
         
         scrollView.backgroundColor = .white
@@ -74,6 +73,4 @@ final class MyPageDetailView: UIView, ViewRepresentable {
             make.bottom.equalToSuperview()
         }
     }
-    
-    
 }

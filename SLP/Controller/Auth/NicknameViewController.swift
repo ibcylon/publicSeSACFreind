@@ -28,7 +28,7 @@ class NicknameViewController: UIViewController {
         bind()
     }
     
-    func bind(){
+    func bind() {
         let input = NicknameViewModel.Input(nickname: mainView.nicknameTextField.rx.text, tap: mainView.button.rx.tap)
         
         let output = viewModel.transform(input: input)

@@ -5,9 +5,7 @@
 //  Created by Kanghos on 2022/02/17.
 //
 
-import Foundation
 import UIKit
-
 
 enum Scene: Int {
     case onboarding = 0

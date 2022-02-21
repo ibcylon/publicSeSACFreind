@@ -16,8 +16,7 @@ final class GreenCell: UICollectionViewCell, ViewRepresentable {
     static let identifier = "GreenCell"
     
     let textLabel = UILabel()
-    
-    
+
     required init?(coder: NSCoder) {
         fatalError("not impl")
     }

@@ -22,8 +22,6 @@ final class VerifyViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        
         mainView.button.setTitle("인증하고 시작하기", for: .normal)
         mainView.titleLabel.text = viewModel.title
         mainView.VerifyTextField.placeholder = "인증번호 입력"
@@ -31,7 +29,7 @@ final class VerifyViewController: BaseViewController {
         
     }
     
-    func bind(){
+    func bind() {
         mainView.submitButton.addTarget(self, action: #selector(requestButtonClicked), for: .touchUpInside)
         let input = VerifyViewModel.Input(validNumber: mainView.VerifyTextField.rx.text, tap: mainView.button.rx.tap)
         
@@ -42,8 +40,7 @@ final class VerifyViewController: BaseViewController {
             .disposed(by: disposeBag)
         
         mainView.timerLabel.rx.text.onNext("\(viewModel.second)")
-        
-        
+
         output.sceneTransition
             .bind { _ in
                 self.resignFirstResponder()
@@ -54,7 +51,7 @@ final class VerifyViewController: BaseViewController {
                     
                     let credential = PhoneAuthProvider.provider().credential(withVerificationID: authID, verificationCode: verificationCode)
                     
-                    Auth.auth().signIn(with: credential) { authResult, error in
+                    Auth.auth().signIn(with: credential) { _, error in
                         if let error = error {
                             let authError = error as NSError
                             print(authError.description)
@@ -65,14 +62,14 @@ final class VerifyViewController: BaseViewController {
                         
                         APIService.refreshToken()
                         
-                        self.viewModel.login { statusCode, error in
+                        self.viewModel.login { statusCode, _ in
                             
                             switch statusCode {
                             case 200:
                                 Storage.setCurrentState(scene: Scene.main)
                                 (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(Storage.currentState())
                             case 401:
-                                //토큰 이상함
+                                // 토큰 이상함
                                 print("\n\ntoken 불량\n\n")
                             case 406:
                                 Storage.setCurrentState(scene: Scene.email)
@@ -94,7 +91,7 @@ final class VerifyViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    @objc func requestButtonClicked(){
+    @objc func requestButtonClicked() {
         
         let phoneNumber = UserDefaults.standard.string(forKey: "phoneNumber")!
         
@@ -108,9 +105,7 @@ final class VerifyViewController: BaseViewController {
                 guard let verficationId = verficationId else {
                     return }
                 
-                UserDefaults.standard.set(verficationId ,forKey: "authVerificationID")
+                UserDefaults.standard.set(verficationId, forKey: "authVerificationID")
             }
     }
 }
-
-

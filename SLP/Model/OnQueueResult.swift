@@ -7,8 +7,6 @@
 
 import Foundation
 
-import Foundation
-
 struct OnQueueResult: Codable {
     var fromQueueDB: [OtherUserInfo]
     var fromQueueDBRequested: [OtherUserInfo]
@@ -39,5 +37,3 @@ struct RegionModel: Codable {
         case region, lat, long
     }
 }
-
-

@@ -29,10 +29,10 @@ class EmailViewModel: CommonViewModel {
         let validStatus: Driver<ButtonStatus>
 //        let validText: BehaviorRelay<String>
         let sceneTransition: ControlEvent<Void>
-        //let buttonStatus: BehaviorRelay<UIButton.Configuration>
+        // let buttonStatus: BehaviorRelay<UIButton.Configuration>
     }
     
-    //유효성 검사
+    // 유효성 검사
     func transform(input: Input) -> Output {
 //        let result = input.email
 //            .orEmpty
@@ -45,9 +45,8 @@ class EmailViewModel: CommonViewModel {
             
         }
             .asDriver(onErrorJustReturn: ButtonStatus.disable)
-        
-        //let status = BehaviorRelay<UIButton.Configuration>(value: .filled())
-        return Output(validStatus: result , sceneTransition: input.tap) // , buttonStatus: status)
+
+        return Output(validStatus: result, sceneTransition: input.tap) 
     }
     
     func validate(_ input: String) -> Bool {

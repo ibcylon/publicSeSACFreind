@@ -11,8 +11,6 @@ import RxSwift
 
 final class MyPageDetailViewModel: BaseViewModel {
     
-    
-    
     var userModel: PublishSubject<User>?
     var disposeBag = DisposeBag()
     var minAge = BehaviorRelay<Int>(value: 17)
@@ -68,7 +66,7 @@ final class MyPageDetailViewModel: BaseViewModel {
     }
     
     func updateUser(updateDTO: UpdateMypageDTO, completion: @escaping (Int?) -> Void) {
-        APIService.updateUser(updateUserDTO: updateDTO) { statusCode, error in
+        APIService.updateUser(updateUserDTO: updateDTO) { statusCode, _ in
             guard let statusCode = statusCode else {
                 return
             }

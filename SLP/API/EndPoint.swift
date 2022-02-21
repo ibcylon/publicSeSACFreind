@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 enum Token {
     case idToken
     case fcmToken
@@ -24,8 +23,6 @@ extension Token {
     }
 }
 
-
-
 enum Method: String {
     case GET, POST, PUT, DELETE
 }
@@ -34,8 +31,6 @@ enum URI: String {
     case user = "/user"
     case queue = "/queue"
 }
-
-
 
 enum EndPoint {
     case user
@@ -82,14 +77,14 @@ extension URLSession {
     
     typealias Handler = (Data?, URLResponse?, Error?) -> Void
     
-    @discardableResult //반환값 사용 안 함
+    @discardableResult
     func dataTask(_ endpoint: URLRequest, handler: @escaping Handler) -> URLSessionDataTask {
         let task = dataTask(with: endpoint, completionHandler: handler)
         task.resume()
         return task
     }
     
-    static func request<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping(T?, APIError?) -> Void){
+    static func request<T: Decodable>(_ session: URLSession = .shared, endpoint: URLRequest, completion: @escaping(T?, APIError?) -> Void) {
         URLSession.shared.dataTask(endpoint) { data, response, error in
             DispatchQueue.main.async {
                 guard error == nil else {

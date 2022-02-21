@@ -7,8 +7,6 @@
 
 import Foundation
 
-
-
 enum RegisterStatusCode: Int {
     
     case success = 200

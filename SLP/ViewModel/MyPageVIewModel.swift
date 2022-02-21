@@ -25,25 +25,22 @@ class MypageViewModel: BaseViewModel {
         Menu(title: "공지사항", icon: "notice"),
         Menu(title: "자주 묻는 질문", icon: "faq"),
         Menu(title: "1:1 문의", icon: "qna"),
-        Menu(title: "알림 설정",icon: "setting_alarm"),
+        Menu(title: "알림 설정", icon: "setting_alarm"),
         Menu(title: "이용 약관", icon: "permit")
     ]
     var backgroundImage: String?
     var gender: Gender = .none
     var hobby: String?
     var isPhoneSearchable: Bool = false
-    var age:Int = 17
+    var age: Int = 17
     var sesacTitles: [SesacTitle] = []
     
-    
     var userInfo: User?
-    func fetch(){
+    func fetch() {
         nickName = UserDefaults.standard.string(forKey: "nickname") ?? ""
     }
     
-    func getUserInfo(completion: @escaping (User?, Int?, Error?) -> Void){
+    func getUserInfo(completion: @escaping (User?, Int?, Error?) -> Void) {
         
     }
-    
-    
 }

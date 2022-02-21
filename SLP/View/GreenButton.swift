@@ -14,7 +14,7 @@ import SnapKit
 
 class GreenButton: UIButton {
     
-    var status: ButtonStatus = .fill  {
+    var status: ButtonStatus = .fill {
         didSet {
             switch status {
             case .inactive:
@@ -31,7 +31,7 @@ class GreenButton: UIButton {
         }
     }
     
-    var validStatus:Bool = false
+    var validStatus: Bool = false
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.status = .fill
@@ -45,7 +45,7 @@ class GreenButton: UIButton {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setFillStyle(){
+    func setFillStyle() {
         
     }
     

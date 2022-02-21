@@ -55,7 +55,4 @@ class PhoneView: UIView, ViewRepresentable {
             make.height.equalTo(50)
         }
     }
-    
-    
-    
 }

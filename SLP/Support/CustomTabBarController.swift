@@ -40,7 +40,6 @@ class CustomTabBarController: UITabBarController {
         
         viewControllers = [homeViewController, shopViewController, friendsViewController, myPageViewController]
         
-        
     }
     
 }

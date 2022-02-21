@@ -14,9 +14,7 @@ class BirthViewController: UIViewController {
     var viewModel = BirthViewModel()
     let mainView = BirthView()
     let disposeBag = DisposeBag()
-    
-   
-    
+
     override func loadView() {
         view = mainView
     }
@@ -31,8 +29,8 @@ class BirthViewController: UIViewController {
         mainView.yearTextField.becomeFirstResponder()
     }
     
-    func bind(){
-        let input = BirthViewModel.Input(birthdate: mainView.yearTextField.rx.text,  tap: mainView.button.rx.tap)
+    func bind() {
+        let input = BirthViewModel.Input(birthdate: mainView.yearTextField.rx.text, tap: mainView.button.rx.tap)
         
         let output = viewModel.transform(input: input)
         
@@ -43,7 +41,7 @@ class BirthViewController: UIViewController {
         output.sceneTransition
             .subscribe { _ in
                 
-                //질문: date 변숫 선언을 어디서 해야 하는지? viewmodel? 아니면 viewcontroller
+                // 질문: date 변숫 선언을 어디서 해야 하는지? viewmodel? 아니면 viewcontroller
                 
                 let isAdult = self.viewModel.checkAultAge(self.mainView.datePicker.date)
                 if isAdult {
@@ -67,8 +65,5 @@ class BirthViewController: UIViewController {
             self.mainView.dayTextField.text = "\(components.day!)"
         }
         .disposed(by: disposeBag)
-        
-        
     }
 }
-

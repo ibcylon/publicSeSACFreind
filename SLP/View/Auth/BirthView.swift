@@ -43,7 +43,6 @@ class BirthView: UIView, ViewRepresentable {
         titleLabel.numberOfLines = 0
         titleLabel.font = UIFont.Display1_R20
         yearTextField.placeholder = "1990"
-//        yearTextField.isEnabled = false
         yearTextField.textAlignment = .center
         yearLabel.text = "년"
         monthLabel.text = "월"
@@ -65,8 +64,7 @@ class BirthView: UIView, ViewRepresentable {
         yearTextField.inputView = datePicker
         monthTextField.inputView = datePicker
         dayTextField.inputView = datePicker
-        
-        
+
     }
     
     func setupConstraints() {
@@ -82,44 +80,6 @@ class BirthView: UIView, ViewRepresentable {
             make.top.equalTo(310)
             make.height.equalTo(40)
         }
-        
-//        yearTextField.snp.makeConstraints { make in
-//            make.top.equalTo(310)
-//            make.leading.equalTo(20)
-//            make.height.equalTo(20)
-//            make.width.equalTo(40)
-//        }
-//        yearLabel.snp.makeConstraints { make in
-//            make.top.equalTo(310)
-//            make.leading.equalTo(yearTextField.snp.trailing)
-//            make.height.equalTo(20)
-//            make.width.equalTo(40)
-//        }
-//        monthTextField.snp.makeConstraints { make in
-//            make.top.equalTo(310)
-//            make.leading.equalTo(yearLabel.snp.trailing)
-//            make.height.equalTo(20)
-//            make.width.equalTo(40)
-//        }
-//        monthLabel.snp.makeConstraints { make in
-//            make.top.equalTo(310)
-//            make.leading.equalTo(monthTextField.snp.trailing)
-//            make.height.equalTo(20)
-//            make.width.equalTo(40)
-//        }
-//        dayTextField.snp.makeConstraints { make in
-//            make.top.equalTo(310)
-//            make.leading.equalTo(monthLabel.snp.trailing)
-//            make.height.equalTo(20)
-//            make.width.equalTo(40)
-//        }
-//        dayLabel.snp.makeConstraints { make in
-//            make.top.equalTo(310)
-//            make.leading.equalTo(dayTextField.snp.trailing)
-//            make.height.equalTo(20)
-//            make.width.equalTo(40)
-//        }
-        
         
         button.snp.makeConstraints { make in
             make.centerX.equalToSuperview()

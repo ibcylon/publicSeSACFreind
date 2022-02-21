@@ -25,7 +25,7 @@ class MyPageCell: UITableViewCell {
            setupConstraints()
        }
     
-    private func setupConstraints(){
+    private func setupConstraints() {
         title = UILabel(frame: .zero)
         title.font = UIFont.Title1_M16
         icon = UIImageView(frame: .zero)

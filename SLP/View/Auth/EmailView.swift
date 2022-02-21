@@ -44,7 +44,6 @@ class EmailView: UIView, ViewRepresentable {
         titleLabel.snp.makeConstraints { make in
             make.top.equalTo(185)
             make.centerX.equalToSuperview()
-            //make.height.equalTo(100)
             
         }
         descriptionLabel.snp.makeConstraints { make in
@@ -64,7 +63,4 @@ class EmailView: UIView, ViewRepresentable {
             make.height.equalTo(50)
         }
     }
-    
-    
-    
 }

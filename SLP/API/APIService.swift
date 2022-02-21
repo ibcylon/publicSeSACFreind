@@ -1,9 +1,8 @@
-
 import Foundation
 import Alamofire
 import FirebaseAuth
 
-enum APIError: Error{
+enum APIError: Error {
     case invalidResponse
     case noData
     case failed
@@ -21,26 +20,21 @@ enum SLPAPIError: Int {
     case clientError = 501
 }
 
-extension SLPAPIError {
-    
-}
-
-
-
 class APIService {
     
     static let shared = APIService()
     
-    private init(){
+    private init() {
         
-        //token refresh
+        // token refresh
         
     }
     
     static let commonHeader = ["idtoken": UserDefaults.standard.string(forKey: "idToken")!, "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
     
-    //MARK: Auth
-    static func login(completion: @escaping (Int?, APIError?) -> Void){
+    // MARK: Auth
+
+    static func login(completion: @escaping (Int?, APIError?) -> Void) {
         AF.request(EndPoint.user.url,
                    method: .get,
                    headers: commonHeader)
@@ -54,15 +48,15 @@ class APIService {
             }
     }
     
-    static func auth(completion: @escaping (Int?, APIError?) -> Void){
+    static func auth(completion: @escaping (Int?, APIError?) -> Void) {
         
         let parameters: Parameters = [
-            "phoneNumber" : UserDefaults.standard.string(forKey: "phoneNumber")!,
-            "FCMtoken" : UserDefaults.standard.string(forKey: "fcmToken")!,
+            "phoneNumber": UserDefaults.standard.string(forKey: "phoneNumber")!,
+            "FCMtoken": UserDefaults.standard.string(forKey: "fcmToken")!,
             "nick": UserDefaults.standard.string(forKey: "nickname")!,
             "birth": UserDefaults.standard.string(forKey: "birth")!,
             "email": UserDefaults.standard.string(forKey: "email")!,
-            "gender" : UserDefaults.standard.integer(forKey: "gender")
+            "gender": UserDefaults.standard.integer(forKey: "gender")
         ]
         
         AF.request(EndPoint.user.url,
@@ -76,18 +70,16 @@ class APIService {
                     guard let statusCode = response.response?.statusCode else {
                         return
                     }
-                    
-                    
+
                     completion(statusCode, nil)
-                    
-                    
+
                 case .failure(let error) :
                     print(#function, error)
                 }
             }
     }
     
-    static func refreshToken(){
+    static func refreshToken() {
         
         let currentUserInstance = Auth.auth().currentUser
         guard let currentUserInstance = currentUserInstance else {
@@ -106,7 +98,7 @@ class APIService {
         }
     }
     
-    //MARK: User
+    // MARK: User
     static func getUser(completion: @escaping (User?, Int?, Error?) -> Void) {
         print(EndPoint.user.url)
         
@@ -143,14 +135,14 @@ class APIService {
         }
     }
     
-    static func updateUser(updateUserDTO: UpdateMypageDTO ,completion: @escaping (Int?, Error?) -> Void) {
+    static func updateUser(updateUserDTO: UpdateMypageDTO, completion: @escaping (Int?, Error?) -> Void) {
         
         let parameters: Parameters = [
             "searchable": updateUserDTO.searchable,
-            "ageMin" : updateUserDTO.ageMin,
-            "ageMax" : updateUserDTO.ageMax,
-            "gender" : updateUserDTO.gender,
-            "hobby" : updateUserDTO.hobby
+            "ageMin": updateUserDTO.ageMin,
+            "ageMax": updateUserDTO.ageMax,
+            "gender": updateUserDTO.gender,
+            "hobby": updateUserDTO.hobby
         ]
         
         AF.request(EndPoint.withdraw.url,
@@ -168,8 +160,8 @@ class APIService {
         }
     }
     
-    //MARK: Queue
-    static func onQueue(onqueueDTO: OnQueueDTO, completion: @escaping (OnQueueResult?, Int? , Error?) -> Void) {
+    // MARK: Queue
+    static func onQueue(onqueueDTO: OnQueueDTO, completion: @escaping (OnQueueResult?, Int?, Error?) -> Void) {
         
         let parameters: Parameters = [
             "region": onqueueDTO.region,
@@ -184,7 +176,7 @@ class APIService {
             let statusCode = response.response?.statusCode
             
             switch response.result {
-            case .success(_):
+            case .success:
                 completion(response.value, statusCode, nil)
             case .failure(let error):
                 completion(nil, statusCode, error)
@@ -195,8 +187,8 @@ class APIService {
     
     static func updateFCMToken(idToken: String, fcmToken: String, completion: @escaping (Int?) -> Void) {
            
-           let parameters : Parameters = [
-               "FCMtoken" : fcmToken
+           let parameters: Parameters = [
+               "FCMtoken": fcmToken
            ]
            
            AF.request(EndPoint.update_fcm_token.url, method: .put, parameters: parameters, headers: commonHeader).responseString { response in
@@ -207,5 +199,3 @@ class APIService {
            
        }
 }
-
-

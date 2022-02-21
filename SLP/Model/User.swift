@@ -46,5 +46,3 @@ struct UserObject: Codable {
         case nick, birth, email, gender
     }
 }
-
-

@@ -28,7 +28,7 @@ class GenderViewModel: CommonViewModel {
     
     var disposeBag = DisposeBag()
     
-    var selectedGender:Gender = .none
+    var selectedGender: Gender = .none
     
     struct Input {
         let maletap: ControlEvent<Void>
@@ -42,16 +42,16 @@ class GenderViewModel: CommonViewModel {
         let sceneTransition: ControlEvent<Void>
     }
     
-    //유효성 검사
+    // 유효성 검사
     func transform(input: Input) -> Output {
         
         let maleSubject = BehaviorSubject<Bool>(value: false)
         let femaleSubject = BehaviorSubject<Bool>(value: false)
         let male = input.maletap
-            .scan(false) { (lastState, newValue) in
+            .scan(false) { (lastState, _) in
                 maleSubject.onNext(!lastState)
-                print("male lastState: ",lastState)
-                print("male presentState: ",!lastState)
+                print("male lastState: ", lastState)
+                print("male presentState: ", !lastState)
                 if !lastState == true {
                     femaleSubject.onNext(false)
                 }
@@ -59,10 +59,10 @@ class GenderViewModel: CommonViewModel {
             }
         
         let female = input.femaletap
-            .scan(false) { lastState, newValue in
+            .scan(false) { lastState, _ in
                 femaleSubject.onNext(!lastState)
-                print("female lastState: ",lastState)
-                print("female presentState: ",!lastState)
+                print("female lastState: ", lastState)
+                print("female presentState: ", !lastState)
                 if !lastState == true {
                    // self.selectedGender = .female
                     maleSubject.onNext(false)
@@ -70,21 +70,17 @@ class GenderViewModel: CommonViewModel {
                 return !lastState
             }
         
-        Observable.of(male, female).merge().subscribe{ event in
-            
+        Observable.of(male, female).merge().subscribe { event in
+            print(event)
             
         }.disposed(by: disposeBag)
-        //.asDriver(onErrorJustReturn: Gender.none)
-        
-        //let status = BehaviorRelay<UIButton.Configuration>(value: .filled())
+
         return Output(maleState: maleSubject, femaleState: femaleSubject, sceneTransition: input.tap) // , buttonStatus: status)
     }
     
-    func login(completion: @escaping (Int?, Error?) -> Void){
-        
-        
-        
-        APIService.auth(){ code, error in
+    func login(completion: @escaping (Int?, Error?) -> Void) {
+
+        APIService.auth { code, error in
             
             completion(code, error)
         }

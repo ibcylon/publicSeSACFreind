@@ -21,6 +21,3 @@ extension ViewRepresentable {
         
     }
 }
-//protocol ViewBindable {
-//    func
-//}
