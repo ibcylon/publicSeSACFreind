@@ -52,7 +52,7 @@ final class MyPageDetailViewModel: BaseViewModel {
     }
     
     func getUser(completion: @escaping (User?, Int?, Error?) -> Void) {
-        APIService.getUser { user, statusCode, error in
+        UserAPIService.getUser { user, statusCode, error in
             guard let user = user else {
                 return
             }
@@ -66,7 +66,7 @@ final class MyPageDetailViewModel: BaseViewModel {
     }
     
     func updateUser(updateDTO: UpdateMypageDTO, completion: @escaping (Int?) -> Void) {
-        APIService.updateUser(updateUserDTO: updateDTO) { statusCode, _ in
+        UserAPIService.updateUser(updateUserDTO: updateDTO) { statusCode, _ in
             guard let statusCode = statusCode else {
                 return
             }

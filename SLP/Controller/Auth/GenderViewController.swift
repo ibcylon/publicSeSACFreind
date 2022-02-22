@@ -75,7 +75,7 @@ class GenderViewController: UIViewController {
                     case 401:
                         // Firebase Token Error
                         // 토큰 갱신 코드 작성
-                        APIService.refreshToken()
+                        UserAPIService.refreshToken()
                         self.viewModel.login { statusCode, _ in
                             switch statusCode {
                             case 200:

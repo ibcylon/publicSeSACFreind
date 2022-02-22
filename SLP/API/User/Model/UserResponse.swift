@@ -1,7 +1,7 @@
 import Foundation
 
 // MARK: - User
-struct User: Codable {
+struct UserResponse: Decodable {
     let id: String
     let v: Int
     let uid, phoneNumber, email, fcMtoken: String
@@ -29,20 +29,5 @@ struct User: Codable {
         case nick, birth, gender, hobby, comment, reputation, sesac, sesacCollection, background, backgroundCollection, purchaseToken
         case transactionID = "transactionId"
         case reviewedBefore, reportedNum, reportedUser, dodgepenalty, dodgeNum, ageMin, ageMax, searchable, createdAt
-    }
-}
-
-struct UserObject: Codable {
-    var phoneNumber: String
-    var fcmToken: String
-    var nick: String
-    let email: String
-    let birth: Date
-    var gender: Int
-    
-    enum CodingKeys: String, CodingKey {
-        case phoneNumber
-        case fcmToken = "FCMtoken"
-        case nick, birth, email, gender
     }
 }

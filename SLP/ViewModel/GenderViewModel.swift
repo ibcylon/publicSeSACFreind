@@ -80,7 +80,7 @@ class GenderViewModel: CommonViewModel {
     
     func login(completion: @escaping (Int?, Error?) -> Void) {
 
-        APIService.auth { code, error in
+        UserAPIService.register { code, error in
             
             completion(code, error)
         }

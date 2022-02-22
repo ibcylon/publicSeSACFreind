@@ -50,7 +50,7 @@ class VerifyViewModel: CommonViewModel {
     
     func login(completion:@escaping (Int?, Error?) -> Void) {
         
-        APIService.login { statusCode, error in
+        UserAPIService.login { statusCode, error in
             completion(statusCode, error)
         }
     }

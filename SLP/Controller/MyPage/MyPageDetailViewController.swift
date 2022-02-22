@@ -94,7 +94,7 @@ final class MyPageDetailViewController: UIViewController {
     }
     
     func withDrawSign() {
-        APIService.withdrawUser { statusCode, _ in
+        UserAPIService.withdrawUser { statusCode, _ in
             
             switch statusCode {
             case 200, 406:

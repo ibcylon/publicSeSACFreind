@@ -9,23 +9,6 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-enum MatchingStatus: Int {
-    case normal = 0
-    case matching = 1
-    case matched = 2
-
-    var image: String {
-        switch self {
-        case .normal:
-            return "default"
-        case .matching:
-            return "matching"
-        case .matched:
-            return "matched"
-        }
-    }
-}
-
 final class HomeViewModel {
 
     private init() {}
@@ -75,8 +58,16 @@ final class HomeViewModel {
     }
     
     func searchNearFriends(onQueueDTO: OnQueueDTO, completion: @escaping (OnQueueResult?, Int?, Error?) -> Void) {
-        APIService.onQueue(onqueueDTO: onQueueDTO) { onqueueResult, statuscode, error in
-            
+        UserAPIService.onQueue(onqueueDTO: onQueueDTO) { onqueueResult, statusCode, error in
+
+            // 에러메시지 및 어노테이션 전처리
+
+            switch statusCode {
+            case 200:
+            case 401:
+            case
+            }
+
             guard let onqueueResult = onqueueResult else {
                 return
             }
@@ -97,7 +88,7 @@ final class HomeViewModel {
 
             self.onQueueResult.onNext(onqueueResult)
             
-            completion(onqueueResult, statuscode, error)
+            completion(onqueueResult, statusCode, error)
         }
     }
 }

@@ -28,6 +28,7 @@ extension Scene {
         }
     }
 }
+
 class Storage {
     static let key: String = "currentState"
     static func currentState() -> UIViewController {

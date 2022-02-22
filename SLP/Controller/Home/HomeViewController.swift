@@ -40,10 +40,17 @@ final class HomeViewController: UIViewController, AlertDisplaying {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
+        // 1.상태 체크
+        // 2.중심 설정
+        // 3.새싹 이미지 띄우기
         checkStatus()
+        setLocation()
         searchNearFriends()
     }
+
     func bind() {
+
         mainView.myLocationButton.addTarget(self, action: #selector(myLocationButtonClicked), for: .touchUpInside)
         mainView.floatingButton.addTarget(self, action: #selector(floatingButtonClicked), for: .touchUpInside)
         [mainView.searchAllButton, mainView.searchMaleButton, mainView.searchFemaleButton].forEach {
@@ -52,6 +59,12 @@ final class HomeViewController: UIViewController, AlertDisplaying {
         viewModel.status.bind { status in
             self.mainView.floatingButton.setImage(UIImage(named: status.image), for: .normal)
         }.disposed(by: disposeBag)
+
+    }
+
+    func setLocation() {
+        mainView.mapView.showsUserLocation = true
+        locationManager.startUpdatingLocation()
     }
 
     func locationSetting() {
@@ -73,8 +86,10 @@ final class HomeViewController: UIViewController, AlertDisplaying {
     }
 
     func checkStatus() {
-        
-        viewModel.status.accept(MatchingStatus(rawValue: UserDefaults.standard.integer(forKey: "status"))!)
+
+        let status = UserDefaults.standard.integer(forKey: "status")
+        mainView.floatingButton.imageView?.image = UIImage(named: MatchingStatus(rawValue: status)?.image ?? "default")
+
     }
     
     @objc func genderButtonClicked(sender: GreenButton) {
@@ -107,7 +122,6 @@ final class HomeViewController: UIViewController, AlertDisplaying {
     @objc func myLocationButtonClicked() {
         if CLLocationManager.locationServicesEnabled() {
             switch locationManager.authorizationStatus {
-                
             case .notDetermined, .restricted, .denied:
                 locationManager.requestWhenInUseAuthorization()
                 presentSetting()
@@ -124,11 +138,11 @@ final class HomeViewController: UIViewController, AlertDisplaying {
     }
 
     func searchNearFriends() {
-        let onQueueDTO = OnQueueDTO(
-            region: viewModel.region.value,
-            lat: viewModel.latitude.value,
-            long: viewModel.longitude.value
-        )
+//        let onQueueDTO = OnQueueDTO(
+//            region: viewModel.region.value,
+//            lat: viewModel.latitude.value,
+//            long: viewModel.longitude.value
+//        )
 //        viewModel.searchNearFriends(onQueueDTO: onQueueDTO) {  result, statusCode, error in
 //
 //            switch statusCode {

@@ -60,7 +60,7 @@ final class VerifyViewController: BaseViewController {
                             return
                         }
                         
-                        APIService.refreshToken()
+                        UserAPIService.refreshToken()
                         
                         self.viewModel.login { statusCode, _ in
                             
