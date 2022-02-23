@@ -66,6 +66,7 @@ extension UserTarget: TargetType {
             return .body(nil)
         }
     }
+    
     var headers: HTTPHeaders {
         switch self {
         case .register, .withdraw:

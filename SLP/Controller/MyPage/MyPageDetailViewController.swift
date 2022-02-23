@@ -15,7 +15,7 @@ final class MyPageDetailViewController: UIViewController {
     let mainView = MyPageDetailView()
     var viewModel = MyPageDetailViewModel()
     var disposeBag = DisposeBag()
-    var user: User?
+    var user: UserResponse?
     override func loadView() {
         self.view = mainView
     }
@@ -94,36 +94,7 @@ final class MyPageDetailViewController: UIViewController {
     }
     
     func withDrawSign() {
-        UserAPIService.withdrawUser { statusCode, _ in
-            
-            switch statusCode {
-            case 200, 406:
-                if statusCode == 200 {
-                    self.view.makeToast("회원탈퇴에 성공했습니다. 첫 화면으로 돌아갑니다")
-                } else {
-                    self.view.makeToast("이미 탈퇴 처리된 회원입니다. 첫 화면으로 돌아갑니다")
-                }
-                DispatchQueue.main.asyncAfter(deadline: .now()+1) {
-                    
-                    guard let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene else { return }
-                    windowScene.windows.first?.rootViewController = PhoneViewController()
-                    windowScene.windows.first?.makeKeyAndVisible()
-                    UIView.transition(with: windowScene.windows.first!, duration: 0.5, options: .transitionCrossDissolve, animations: nil, completion: nil)
-                }
-            case 401:
-                self.refreshFirebaseIdToken { idToken, _ in
-                    if let idToken = idToken {
-                        print(idToken)
-                        self.withDrawSign()
-                    }
-                }
-                
-            case 500:
-                self.view.makeToast("서버 오류로 회원 탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요")
-            default:
-                self.view.makeToast("회원 탈퇴에 실패했습니다. 잠시 후 다시 시도해주세요")
-            }
-        }
+
     }
     func bind() {
         self.mainView.bottomView.hobbyTextField
@@ -153,32 +124,7 @@ final class MyPageDetailViewController: UIViewController {
     
     @objc func updateUserInfoBarButtonClicked() {
         
-        let updateDTO = UpdateMypageDTO(searchable: viewModel.searchable.value ? 1 : 0,
-                                        ageMin: viewModel.minAge.value, ageMax: viewModel.maxAge.value, gender: viewModel.gender.value.rawValue, hobby: viewModel.hobby.value)
-        print(updateDTO)
-        viewModel.updateUser(updateDTO: updateDTO) { statusCode in
-            
-            print(statusCode as Any)
-            switch statusCode {
-            case 200:
-                self.view.makeToast("수정이 완료되었습니다")
-            case 401:
-                self.refreshFirebaseIdToken { _, _ in
-                    
-                    self.viewModel.updateUser(updateDTO: updateDTO) { statusCode in
-                        switch statusCode {
-                        case 200:
-                            self.view.makeToast("수정이 완료되었습니다")
-                        default:
-                            self.view.makeToast("내 정보 수정에 실패했습니다. 잠시 후에 다시 시도해주세요")
-                        }
-                    }
-                    
-                }
-            default :
-                self.view.makeToast("내 정보 수정에 실패했습니다. 잠시 후에 다시 시도해주세요")
-            }
-        }
+        
     }
     
     @objc func habitTextFieldTextChanged() {

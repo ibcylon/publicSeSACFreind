@@ -15,8 +15,8 @@ final class HomeViewModel {
 
     static let shared = HomeViewModel()
 
-    var user: BehaviorSubject<User> = BehaviorSubject(
-        value: User(
+    var user: BehaviorSubject<UserResponse> = BehaviorSubject(
+        value: UserResponse(
             id: "", v: 0, uid: "", phoneNumber: "", email: "", fcMtoken: "", nick: "", birth: "", gender: 0, hobby: "",
             comment: [], reputation: [], sesac: 0, sesacCollection: [], background: 0,
             backgroundCollection: [], purchaseToken: [],
@@ -25,7 +25,7 @@ final class HomeViewModel {
         )
     )
 
-    var onQueueResult: BehaviorSubject<OnQueueResult> = BehaviorSubject(value: OnQueueResult(fromQueueDB: [], fromQueueDBRequested: [], fromRecommend: []))
+    var onQueueResult: BehaviorSubject<OnQueueResponse> = BehaviorSubject(value: OnQueueResponse(fromQueueDB: [], fromQueueDBRequested: [], fromRecommend: []))
     var latitude = BehaviorRelay<Double>(value: 0.0)
     var longitude = BehaviorRelay<Double>(value: 0.0)
     var region = BehaviorRelay<Int>(value: 0)
@@ -53,42 +53,11 @@ final class HomeViewModel {
         self.region.accept(Int(strRegion) ?? 0)
     }
     
-    func emitOnQueueDTO() -> OnQueueDTO {
-        return OnQueueDTO(region: region.value, lat: latitude.value, long: longitude.value)
+    func emitOnQueueDTO() -> OnQueueRequest {
+        return OnQueueRequest(region: region.value, lat: latitude.value, long: longitude.value)
     }
     
-    func searchNearFriends(onQueueDTO: OnQueueDTO, completion: @escaping (OnQueueResult?, Int?, Error?) -> Void) {
-        UserAPIService.onQueue(onqueueDTO: onQueueDTO) { onqueueResult, statusCode, error in
+    func searchNearFriends(request: OnQueueRequest, completion: @escaping (OnQueueResponse?, Int?, Error?) -> Void) {
 
-            // 에러메시지 및 어노테이션 전처리
-
-            switch statusCode {
-            case 200:
-            case 401:
-            case
-            }
-
-            guard let onqueueResult = onqueueResult else {
-                return
-            }
-            
-            let foo = onqueueResult.fromQueueDB
-            var man: [OnQueueResult.OtherUserInfo] = []
-            var woman: [OnQueueResult.OtherUserInfo] = []
-            foo.forEach { other in
-                switch other.gender {
-                case 0:
-                    woman.append(other)
-                case 1:
-                    man.append(other)
-                default:
-                    return
-                }
-            }
-
-            self.onQueueResult.onNext(onqueueResult)
-            
-            completion(onqueueResult, statusCode, error)
-        }
     }
 }

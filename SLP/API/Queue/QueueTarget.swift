@@ -16,6 +16,7 @@ enum QueueTarget {
     case dodge(OtherUser)
     case rate(RateRequest)
     case myQueueState
+    case queueStop
 }
 
 extension QueueTarget: TargetType {
@@ -23,7 +24,6 @@ extension QueueTarget: TargetType {
     var baseURL: String {
         return GeneralAPIComponent.baseURL + "/queue"
     }
-
     var method: HTTPMethod {
         switch self {
         case .queue:
@@ -40,12 +40,14 @@ extension QueueTarget: TargetType {
             return .post
         case .myQueueState:
             return .get
+        case .queueStop:
+            return .delete
         }
     }
 
     var path: String {
         switch self {
-        case .queue:
+        case .queue, .queueStop:
             return ""
         case .onQueue:
             return "onqueue"
@@ -55,22 +57,37 @@ extension QueueTarget: TargetType {
             return "hobbyaccept"
         case .dodge:
             return "dodge"
-        case .rate:
-            return "rate/"
+        case .rate: // uid 추가해야 함.
+            return "rate/\(UserManager.otherUID ?? "")"
         case .myQueueState:
             return "myQueueState"
         }
     }
 
     var parameters: RequestParams {
-        switch 
+        switch self {
+        case .queue(let queueRequest):
+            return .body(queueRequest)
+        case .onQueue(let onQueueRequest):
+            return .body(onQueueRequest)
+        case .hobbyRequest(let otherUser):
+            return .body(otherUser)
+        case .hobbyAccept(let otherUser):
+            return .body(otherUser)
+        case .dodge(let otherUser):
+            return .body(otherUser)
+        case .rate(let rateRequest):
+            return .body(rateRequest)
+        case .myQueueState, .queueStop:
+            return .body(nil)
         }
     }
+
     var headers: HTTPHeaders {
         switch self {
-        case .register, .withdraw:
+        case .queue, .queueStop, .hobbyRequest, .hobbyAccept, .dodge, .rate:
             return GeneralAPIComponent.header
-        default:
+        case .onQueue, .myQueueState:
             return GeneralAPIComponent.contentHeader
         }
     }

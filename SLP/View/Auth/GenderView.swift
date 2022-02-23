@@ -42,10 +42,10 @@ class GenderView: UIView, ViewRepresentable {
         genderContainer.alignment = .center
         
         let handler: UIButton.ConfigurationUpdateHandler = { button in
-            switch button.state {
-            case .selected :
+            switch button.isSelected {
+            case true:
                 button.configuration?.background.backgroundColor = .brandWhitegreen
-            default:
+            case false:
                 button.configuration?.background.backgroundColor = .white
             }
         }

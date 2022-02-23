@@ -11,7 +11,7 @@ import RxSwift
 
 final class MyPageDetailViewModel: BaseViewModel {
     
-    var userModel: PublishSubject<User>?
+    var userModel: PublishSubject<UserResponse>?
     var disposeBag = DisposeBag()
     var minAge = BehaviorRelay<Int>(value: 17)
     var maxAge = BehaviorRelay<Int>(value: 64)
@@ -51,28 +51,12 @@ final class MyPageDetailViewModel: BaseViewModel {
             .disposed(by: disposeBag)
     }
     
-    func getUser(completion: @escaping (User?, Int?, Error?) -> Void) {
-        UserAPIService.getUser { user, statusCode, error in
-            guard let user = user else {
-                return
-            }
-            guard let statusCode = statusCode else {
-                return
-            }
-            self.userModel?.onNext(user)
-            
-            completion(user, statusCode, error)
-        }
+    func getUser(completion: @escaping (UserResponse?, Int?, Error?) -> Void) {
+
     }
     
-    func updateUser(updateDTO: UpdateMypageDTO, completion: @escaping (Int?) -> Void) {
-        UserAPIService.updateUser(updateUserDTO: updateDTO) { statusCode, _ in
-            guard let statusCode = statusCode else {
-                return
-            }
-           
-            completion(statusCode)
-        }
+    func updateUser(request: UpdateMyPageRequest, completion: @escaping (Int?) -> Void) {
+
     }
 }
     

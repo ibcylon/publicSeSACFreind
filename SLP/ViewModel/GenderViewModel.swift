@@ -5,16 +5,9 @@
 //  Created by Kanghos on 2022/01/23.
 //
 
-import Foundation
 import RxSwift
 import RxCocoa
 import UIKit
-
-enum Gender: Int {
-    case none = -1
-    case female = 0
-    case male = 1
-}
 
 class GenderViewModel: CommonViewModel {
     
@@ -25,7 +18,6 @@ class GenderViewModel: CommonViewModel {
     var validStatus: Bool = false
     
     var gender = BehaviorRelay<Gender>(value: .none)
-    
     var disposeBag = DisposeBag()
     
     var selectedGender: Gender = .none
@@ -47,42 +39,60 @@ class GenderViewModel: CommonViewModel {
         
         let maleSubject = BehaviorSubject<Bool>(value: false)
         let femaleSubject = BehaviorSubject<Bool>(value: false)
-        let male = input.maletap
-            .scan(false) { (lastState, _) in
-                maleSubject.onNext(!lastState)
-                print("male lastState: ", lastState)
-                print("male presentState: ", !lastState)
-                if !lastState == true {
-                    femaleSubject.onNext(false)
+
+        input.maletap
+            .map({ _ in
+                switch self.gender.value {
+                case .none, .female:
+                    return .male
+                case .male:
+                    return .none
                 }
-                return !lastState
-            }
-        
-        let female = input.femaletap
-            .scan(false) { lastState, _ in
-                femaleSubject.onNext(!lastState)
-                print("female lastState: ", lastState)
-                print("female presentState: ", !lastState)
-                if !lastState == true {
-                   // self.selectedGender = .female
-                    maleSubject.onNext(false)
+            })
+            .share(replay: 1, scope: .whileConnected)
+            .asDriver(onErrorJustReturn: .none)
+            .drive(gender)
+            .disposed(by: disposeBag)
+
+        input.femaletap
+            .map({ _ in
+                switch self.gender.value {
+                case .none, .male:
+                    return .female
+                case .female:
+                    return .none
                 }
-                return !lastState
+            })
+            .share(replay: 1, scope: .whileConnected)
+            .asDriver(onErrorJustReturn: .none)
+            .drive(gender)
+            .disposed(by: disposeBag)
+
+        gender.bind { selectedGender in
+            switch selectedGender {
+            case .male:
+                maleSubject.onNext(true)
+                femaleSubject.onNext(false)
+            case .female:
+                maleSubject.onNext(false)
+                femaleSubject.onNext(true)
+            case .none:
+                maleSubject.onNext(false)
+                femaleSubject.onNext(false)
             }
-        
-        Observable.of(male, female).merge().subscribe { event in
-            print(event)
-            
+            debugPrint(selectedGender)
         }.disposed(by: disposeBag)
 
         return Output(maleState: maleSubject, femaleState: femaleSubject, sceneTransition: input.tap) // , buttonStatus: status)
     }
     
-    func login(completion: @escaping (Int?, Error?) -> Void) {
+    func register(completion: @escaping (Int?, Error?) -> Void) {
 
-        UserAPIService.register { code, error in
-            
-            completion(code, error)
-        }
+        
+    }
+
+    func genderClicked() {
+
+
     }
 }

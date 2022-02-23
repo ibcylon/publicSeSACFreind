@@ -29,6 +29,8 @@ extension TargetType {
             let params = request?.toDictionary() ?? [:]
             urlRequest.httpBody = try JSONSerialization.data(withJSONObject: params, options: [])
         }
+
+        return urlRequest
     }
 }
 

@@ -4,14 +4,6 @@ import FirebaseAuth
 
 class UserAPIService {
     
-    static let shared = UserAPIService()
-    
-    private init() {
-        
-    }
-    
-    static let commonHeader = ["idtoken": UserManager.idToken ?? "", "Content-Type": "application/x-www-form-urlencoded"] as HTTPHeaders
-    
     static func register(request: RegisterRequest, completion: @escaping (Int?, Error?) -> Void) {
 
         AF.request(UserTarget.register(request))

@@ -35,12 +35,12 @@ class MypageViewModel: BaseViewModel {
     var age: Int = 17
     var sesacTitles: [SesacTitle] = []
     
-    var userInfo: User?
+    var userInfo: UserResponse?
     func fetch() {
         nickName = UserDefaults.standard.string(forKey: "nickname") ?? ""
     }
     
-    func getUserInfo(completion: @escaping (User?, Int?, Error?) -> Void) {
+    func getUserInfo(completion: @escaping (UserResponse?, Int?, Error?) -> Void) {
         
     }
 }

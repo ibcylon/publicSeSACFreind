@@ -58,6 +58,14 @@ class UserManager {
     @UserDefault(key: "currentState", defaultValue: Scene.onboarding.rawValue)
     static var currentState: Int
 
+    @UserDefault(key: "otheruid", defaultValue: nil)
+    static var otherUID: String?
+
+}
+enum Gender: Int {
+    case none = -1
+    case male = 1
+    case female = 0
 }
 
 enum MatchingStatus: Int {

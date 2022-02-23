@@ -60,28 +60,8 @@ final class VerifyViewController: BaseViewController {
                             return
                         }
                         
-                        UserAPIService.refreshToken()
-                        
-                        self.viewModel.login { statusCode, _ in
-                            
-                            switch statusCode {
-                            case 200:
-                                Storage.setCurrentState(scene: Scene.main)
-                                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(Storage.currentState())
-                            case 401:
-                                // 토큰 이상함
-                                print("\n\ntoken 불량\n\n")
-                            case 406:
-                                Storage.setCurrentState(scene: Scene.email)
-                                self.navigationController?.pushViewController(NicknameViewController(), animated: true)
-                            case 500:
-                                print("Server Error")
-                            case 501:
-                                print("CLient Error")
-                            default :
-                                print("unknown Error")
-                            }
-                        }
+                        FirebaseAPI.refreshToken()
+                        self.recursiveLogin()
                     }
                 } else {
                     self.view.makeToast("승인번호가 올바르지 않습니다.")
@@ -107,5 +87,27 @@ final class VerifyViewController: BaseViewController {
                 
                 UserDefaults.standard.set(verficationId, forKey: "authVerificationID")
             }
+    }
+
+    func recursiveLogin() {
+        self.viewModel.login { statusCode, _ in
+            switch statusCode {
+            case 200:
+                Storage.setCurrentState(scene: Scene.main)
+                (UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate)?.changeRootViewController(Storage.currentState())
+            case 401:
+                FirebaseAPI.refreshToken()
+                self.recursiveLogin()
+            case 406:
+                Storage.setCurrentState(scene: Scene.email)
+                self.navigationController?.pushViewController(NicknameViewController(), animated: true)
+            case 500:
+                self.view.makeToast("잠시 후 다시 해보시기 바랍니다.")
+            case 501:
+                print("프론트 체크")
+            default:
+                print("unknownError", statusCode as Any)
+            }
+        }
     }
 }
