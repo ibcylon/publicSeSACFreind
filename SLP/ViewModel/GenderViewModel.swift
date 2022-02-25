@@ -9,18 +9,13 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-class GenderViewModel: CommonViewModel {
+final class GenderViewModel: CommonViewModel {
     
     var title: String = "성별을 선택해주세요"
     var description: String = "새싹 찾기 기능을 위해 필요해요"
-    var placeholder = "sesac@gmail.com"
-    var validText = BehaviorRelay<String>(value: "최소 8자 이상 필요해요")
-    var validStatus: Bool = false
-    
+    var placeholder = ""
     var gender = BehaviorRelay<Gender>(value: .none)
     var disposeBag = DisposeBag()
-    
-    var selectedGender: Gender = .none
     
     struct Input {
         let maletap: ControlEvent<Void>
@@ -83,16 +78,37 @@ class GenderViewModel: CommonViewModel {
             debugPrint(selectedGender)
         }.disposed(by: disposeBag)
 
-        return Output(maleState: maleSubject, femaleState: femaleSubject, sceneTransition: input.tap) // , buttonStatus: status)
+        return Output(maleState: maleSubject, femaleState: femaleSubject, sceneTransition: input.tap)
     }
     
-    func register(completion: @escaping (Int?, Error?) -> Void) {
+    func register(completion: @escaping (APIResponse?) -> Void) {
 
-        
-    }
+        let request = RegisterRequest(phoneNumber: UserManager.phoneNumber ?? "",
+                                      FCMtoken: UserManager.fcmToken ?? "",
+                                      nick: UserManager.nickname ?? "",
+                                      email: UserManager.email ?? "",
+                                      birth: UserManager.birth ?? Date(),
+                                      gender: UserManager.gender)
 
-    func genderClicked() {
-
-
+        UserAPIService.register(request: request) { statusCode, _ in
+            switch statusCode {
+            case 200:
+                UserManager.currentState = Scene.main.rawValue
+                completion(.registerSuccess)
+            case 201:
+                UserManager.currentState = Scene.main.rawValue
+                completion(.existedUser)
+            case 202:
+                UserManager.currentState = Scene.nickname.rawValue
+                completion(.invalidNickname)
+            case 401:
+                UserManager.currentState = Scene.nickname.rawValue
+                FirebaseAPI.refreshToken()
+                completion(.invalidToken)
+            default:
+                UserManager.currentState = Scene.nickname.rawValue
+                completion(.nonHumanError)
+            }
+        }
     }
 }

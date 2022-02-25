@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class VerifyView: UIView, ViewRepresentable {
+final class VerifyView: UIView, ViewRepresentable {
     
     let button = GreenButton()
     let titleLabel = UILabel()

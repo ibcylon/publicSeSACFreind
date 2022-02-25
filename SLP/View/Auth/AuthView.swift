@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class AuthView: UIView, ViewRepresentable {
+final class AuthView: UIView, ViewRepresentable {
     
     let button = GreenButton()
     let titleLabel = UILabel.titleLabel()

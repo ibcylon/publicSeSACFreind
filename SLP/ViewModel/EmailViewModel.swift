@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-class EmailViewModel: CommonViewModel {
+final class EmailViewModel: CommonViewModel {
     
     var title: String = "이메일을 입력해주세요"
     var description: String = "휴대폰 번호 변경 시 인증을 위해 사용해요"

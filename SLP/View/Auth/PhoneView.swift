@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class PhoneView: UIView, ViewRepresentable {
+final class PhoneView: UIView, ViewRepresentable {
     
     let button = GreenButton()
     let titleLabel = UILabel()
@@ -33,7 +33,12 @@ class PhoneView: UIView, ViewRepresentable {
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 0
         titleLabel.font = UIFont.Display1_R20
+        titleLabel.text = "새싹 서비스 이용을 위해 \n 휴대폰 번호를 입력해 주세요"
+
+        phoneTextField.placeholder = "휴대폰 번호(-없이 숫자만 입력)"
+
         button.backgroundColor = .brandGreen
+        button.setTitle("인증 문자 받기", for: .normal)
     }
     
     func setupConstraints() {

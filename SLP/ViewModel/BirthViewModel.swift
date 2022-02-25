@@ -9,7 +9,7 @@ import RxSwift
 import RxCocoa
 import Foundation
 
-class BirthViewModel: CommonViewModel {
+final class BirthViewModel: CommonViewModel {
     
     var disposeBag =  DisposeBag()
     var title: String = "생년월일을 알려주세요"

@@ -6,7 +6,7 @@
 //
 import UIKit
 
-class OnboardingViewController: UIViewController {
+final class OnboardingViewController: UIViewController {
     override func viewDidLoad() {
         Storage.setCurrentState(scene: Scene.auth)
     }

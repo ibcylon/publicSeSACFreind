@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 typealias AlertAction = (UIAlertAction) -> Void
 protocol AlertDisplaying {
@@ -13,15 +14,6 @@ protocol AlertDisplaying {
     func displayFailureAlert(message: String?)
     func displayAlertWithAction(title: String?, message: String?, action: AlertAction?)
 }
-
-class BaseViewController: UIViewController {
-    
-    override func viewDidLoad() {
-        setLeftArrowButton()
-    }
-}
-
-class BaseViewModel {}
 
 extension AlertDisplaying where Self: UIViewController {
     
@@ -49,3 +41,22 @@ extension AlertDisplaying where Self: UIViewController {
         present(alertController, animated: true, completion: nil)
     }
 }
+
+protocol BaseController: AnyObject {
+    associatedtype MainView
+    associatedtype ViewModel
+    var viewModel: ViewModel { get set }
+    var mainView: MainView { get set }
+    var disposeBag: DisposeBag { get set }
+
+    func bind()
+}
+
+class BaseViewController: UIViewController {
+
+    override func viewDidLoad() {
+        setLeftArrowButton()
+    }
+}
+
+class BaseViewModel {}

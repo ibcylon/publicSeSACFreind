@@ -12,7 +12,7 @@ import SnapKit
     case inactive, fill, outline, cancel, disable
 }
 
-class GreenButton: UIButton {
+final class GreenButton: UIButton {
     
     var status: ButtonStatus = .fill {
         didSet {

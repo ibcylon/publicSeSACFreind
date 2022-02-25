@@ -9,11 +9,11 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class GenderViewController: UIViewController {
-    
+final class GenderViewController: UIViewController, BaseController {
+
     var viewModel = GenderViewModel()
-    let mainView = GenderView()
-    let disposeBag = DisposeBag()
+    var mainView = GenderView()
+    var disposeBag = DisposeBag()
     
     override func loadView() {
         view = mainView
@@ -44,9 +44,8 @@ class GenderViewController: UIViewController {
         
         output.sceneTransition
             .bind {  _ in
-                print(self.viewModel.selectedGender)
                 
-                UserDefaults.standard.set(self.viewModel.selectedGender.rawValue, forKey: "gender")
+                UserManager.gender = self.viewModel.gender.value.rawValue
 
                 self.recursiveLogin()
 
@@ -55,33 +54,24 @@ class GenderViewController: UIViewController {
     }
 
     func recursiveLogin() {
-        self.viewModel.register { code, _ in
-            switch code {
-            case 200:
-                Storage.setCurrentState(scene: Scene.main)
-                self.view.makeToast("회원가입이 완료되었습니다.")
+        self.viewModel.register { statusCode in
+            switch statusCode {
+            case .registerSuccess:
+                self.view.makeToast(statusCode?.message)
+
                 self.navigationController?.pushViewController(HomeViewController(), animated: true)
-            case 201:
-                self.view.makeToast("이미 가입이력이 있습니다.")
+            case .existedUser:
+                self.view.makeToast(statusCode?.message)
                 self.navigationController?.pushViewController(HomeViewController(), animated: true)
-            case 202:
-                self.view.makeToast("사용할 수 없는 닉네임입니다..")
+            case .invalidNickname:
+                self.view.makeToast(statusCode?.message)
                 self.navigationController?.pushViewController(NicknameViewController(), animated: true)
-            case 401:
+            case .invalidToken:
                 FirebaseAPI.refreshToken()
-
                 self.recursiveLogin()
-
-            case 500:
-                self.view.makeToast("잠시 후에 다시 시도해주시기 바랍니다.")
-            case 501:
-                // Client Error
-                // API 요청시 Header와 RequestBody에 값을 빠트리지 않고 전송했는지 확인
-                print("header")
             default :
-                print("unknown error")
+                print(statusCode?.message ?? "")
             }
-
         }
     }
 }

@@ -99,7 +99,7 @@ final class VerifyViewController: BaseViewController {
                 FirebaseAPI.refreshToken()
                 self.recursiveLogin()
             case 406:
-                Storage.setCurrentState(scene: Scene.email)
+                Storage.setCurrentState(scene: Scene.nickname)
                 self.navigationController?.pushViewController(NicknameViewController(), animated: true)
             case 500:
                 self.view.makeToast("잠시 후 다시 해보시기 바랍니다.")

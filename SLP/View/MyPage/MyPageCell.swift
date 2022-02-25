@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MyPageCell: UITableViewCell {
+final class MyPageCell: UITableViewCell {
     
     static let identifier = "MyPageCell"
     

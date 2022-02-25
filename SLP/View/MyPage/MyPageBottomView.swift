@@ -9,7 +9,7 @@ import UIKit
 import Then
 import RangeSeekSlider
 
-class MyPageBottomView: UIView, ViewRepresentable {
+final class MyPageBottomView: UIView, ViewRepresentable {
     
     let nameLabel = UILabel().then {
         $0.text = "내 성별"

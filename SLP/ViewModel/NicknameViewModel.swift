@@ -8,7 +8,7 @@
 import RxSwift
 import RxCocoa
 
-class NicknameViewModel: CommonViewModel {
+final class NicknameViewModel: CommonViewModel {
 
     var disposeBag =  DisposeBag()
     var title: String = "닉네임을 입력해주세요"

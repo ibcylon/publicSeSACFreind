@@ -26,7 +26,7 @@ class EmailViewController: UIViewController {
         mainView.titleLabel.text = viewModel.title
         mainView.descriptionLabel.text = viewModel.description
         mainView.emailTextField.placeholder = viewModel.placeholder
-        mainView.emailTextField.text = UserDefaults.standard.string(forKey: "email") ?? ""
+        mainView.emailTextField.text = UserManager.email ?? ""
         bind()
     }
     
@@ -43,8 +43,7 @@ class EmailViewController: UIViewController {
             .bind { _ in
                 self.resignFirstResponder()
                 if self.mainView.button.status == .fill {
-                    
-                    UserDefaults.standard.set(self.mainView.emailTextField.text, forKey: "email")
+                    UserManager.email = self.mainView.emailTextField.text
                     self.navigationController?.pushViewController(GenderViewController(), animated: true)
                 } else {
                     self.view.makeToast("이메일 형식이 올바르지 않습니다.")

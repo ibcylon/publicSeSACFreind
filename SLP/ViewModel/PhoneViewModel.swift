@@ -20,7 +20,7 @@ protocol CommonViewModel {
     func transform(input: Input) -> Output
 }
 
-class PhoneViewModel: CommonViewModel {
+final class PhoneViewModel: CommonViewModel {
     
     var title: String = "새싹 서비스 이용을 위해 \n 휴대폰 번호를 입력해 주세요"
     var description: String = ""

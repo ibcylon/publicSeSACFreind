@@ -33,7 +33,8 @@ extension UIViewController {
             }
             
             if let idToken = idToken {
-                UserDefaults.standard.set(idToken, forKey: "idToken")
+                UserManager.idToken = idToken
+                
                 completion(idToken, nil)
                 
             }
@@ -61,7 +62,7 @@ extension UILabel {
     }
 }
 
-class ClickListener: UITapGestureRecognizer {
+final class ClickListener: UITapGestureRecognizer {
     var onClick: (() -> Void)?
 }
 

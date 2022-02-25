@@ -7,7 +7,7 @@
 
 import UIKit
 
-class SesacTitleCell: UICollectionViewCell, ViewRepresentable {
+final class SesacTitleCell: UICollectionViewCell, ViewRepresentable {
 
     let badge = GreenButton()
     

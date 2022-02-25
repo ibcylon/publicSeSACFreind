@@ -124,7 +124,6 @@ final class MyPageDetailViewController: UIViewController {
     
     @objc func updateUserInfoBarButtonClicked() {
         
-        
     }
     
     @objc func habitTextFieldTextChanged() {

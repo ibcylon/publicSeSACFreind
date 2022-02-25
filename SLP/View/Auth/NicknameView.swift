@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class NicknameView: UIView, ViewRepresentable {
+final class NicknameView: UIView, ViewRepresentable {
     
     let button = GreenButton()
     let titleLabel = UILabel()

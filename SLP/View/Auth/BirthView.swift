@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class BirthView: UIView, ViewRepresentable {
+final class BirthView: UIView, ViewRepresentable {
     
     let button = GreenButton()
     let titleLabel = UILabel()

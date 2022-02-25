@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class VerifyViewModel: CommonViewModel {
+final class VerifyViewModel: CommonViewModel {
 
     var title: String = "인증번호가 문자로 전송되었어요"
     var description: String = "(최대 소모 20초)"
@@ -50,7 +50,6 @@ class VerifyViewModel: CommonViewModel {
     
     func login(completion:@escaping (Int?, Error?) -> Void) {
         
-
     }
 
 }

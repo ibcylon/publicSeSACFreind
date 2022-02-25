@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class GenderView: UIView, ViewRepresentable {
+final class GenderView: UIView, ViewRepresentable {
     
     let button = GreenButton()
     let titleLabel = UILabel.titleLabel()

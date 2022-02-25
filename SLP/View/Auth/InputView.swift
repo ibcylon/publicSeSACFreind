@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class InputView: UITextField {
+final class InputView: UITextField {
 
     enum FieldStatus {
         case inactive, focus, active, disable, error, success

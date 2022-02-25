@@ -26,7 +26,7 @@ struct UserDefault<T> {
     }
 }
 
-class UserManager {
+final class UserManager {
 
     @UserDefault(key: "idToken", defaultValue: nil)
     static var idToken: String?
@@ -35,7 +35,7 @@ class UserManager {
     static var fcmToken: String?
 
     @UserDefault(key: "birth", defaultValue: nil)
-    static var birth: String?
+    static var birth: Date?
 
     @UserDefault(key: "email", defaultValue: nil)
     static var email: String?
