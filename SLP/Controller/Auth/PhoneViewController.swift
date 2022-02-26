@@ -32,7 +32,7 @@ final class PhoneViewController: UIViewController, BaseController {
         let output = viewModel.transform(input: input)
         
         output.validStatus
-            .bind(to: mainView.button.rx.validStatus)
+            .drive(to: mainView.button.rx.status)
             .disposed(by: disposeBag)
 
         output.sceneTransition
@@ -50,10 +50,9 @@ final class PhoneViewController: UIViewController, BaseController {
                         print(error.localizedDescription)
                         return
                     }
-                    
-                    self.mainView.currentVerification = verifyID!
-                    UserDefaults.standard.set(self.mainView.currentVerification, forKey: "authVerificationID")
-                    UserDefaults.standard.set(self.mainView.phoneTextField.text, forKey: "phoneNumber")
+
+                    UserManager.authVerificationID = verifyID
+                    UserManager.phoneNumber = self.mainView.phoneTextField.text
                 }
                 self.navigationController?.pushViewController(VerifyViewController(), animated: true)
             }

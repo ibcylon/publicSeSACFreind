@@ -10,6 +10,7 @@ import UIKit
 import RxSwift
 
 protocol ViewRepresentable {
+
 }
 
 extension ViewRepresentable {
@@ -20,4 +21,8 @@ extension ViewRepresentable {
     private func setupConstraints() {
         
     }
+}
+
+class Dsdfsfd: ViewRepresentable {
+
 }
